@@ -18,7 +18,7 @@ public class CoffeeMachine {
 
         session.launch(sc.nextInt());
 
-
+        System.out.println("sdnjldsfvg");
 
 
     }
