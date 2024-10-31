@@ -13,14 +13,14 @@ public class Launch {
     }
 
 
-    public void turnOn() {
+    private void turnOn() {
         indent(30);
         border();
         System.out.println(CoffeeMachine.whitespace.repeat(10) + "Кофемашина включена");
         border();
     }
 
-    public void turnOff() {
+    private void turnOff() {
         border();
         indent(30);
         System.out.println(CoffeeMachine.whitespace.repeat(10) + "Кофемашина выключена");
