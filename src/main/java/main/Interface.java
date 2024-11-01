@@ -1,4 +1,4 @@
-package coffeemachine;
+package main;
 
 public class Interface {
     private int mainMenu;

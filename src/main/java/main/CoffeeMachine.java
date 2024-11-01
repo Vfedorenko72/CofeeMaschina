@@ -1,4 +1,4 @@
-package coffeemachine;
+package main;
 
 import java.util.Scanner;
 
