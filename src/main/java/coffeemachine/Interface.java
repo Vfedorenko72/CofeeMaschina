@@ -40,12 +40,20 @@ public class Interface {
                 "0. Выключить кофемашину ";
         Decorator.border(mainMenu);
         System.out.print("Выберите пункт меню: ");
-        int num1 = sc.nextInt();
-        switch (num1) {
-            case 1 -> makingCoffeeMenu();
-            case 2 -> serviceMenu();
-            case 3 -> turnOff();
+        int num = sc.nextInt();
+        while (num != 0) {
+            switch (num) {
+                case 1 -> makingCoffeeMenu();
+                case 2 -> serviceMenu();
+                case 3 -> turnOff();
+            }
+
+                Decorator.border(mainMenu);
+                System.out.print("Выберите пункт меню: ");
+                num = sc.nextInt();
+
         }
+
     }
 
     public void makingCoffeeMenu() {
