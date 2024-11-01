@@ -1,11 +1,12 @@
 package coffeemachine;
 
 public class Interface {
+    private int mainMenu;
 
     public Interface() {
 
     }
 
-    //и дальше код
+    //public
 
 }
