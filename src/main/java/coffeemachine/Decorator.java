@@ -11,14 +11,17 @@ public class Decorator {
         }
 
     }
-    public static void border() {
+    public static void border(String str) {
         System.out.println();
-        for (int i = 0; i < 15; i++) {
+        System.out.print("|*|".repeat(15));
+        System.out.println();
+        System.out.println();
 
-            System.out.print("|*|");
-        }
-            System.out.println();
-            System.out.println();
+        System.out.println(str);
 
+        System.out.println();
+        System.out.print("|*|".repeat(15));
+        System.out.println();
+        System.out.println();
     }
 }

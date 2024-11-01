@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Interface {
 
     Scanner sc = new Scanner(System.in);
+    Ingredients ingredients = new Ingredients(500, 1000, 500);
 
     static String whitespace = " ";
 
@@ -20,33 +21,80 @@ public class Interface {
 
     private void turnOn() {
         Decorator.indent(30);
-        Decorator.border();
-        System.out.println(whitespace.repeat(10) + "Кофемашина включена");
-        Decorator.border();
+        String ternOn = whitespace.repeat(10) + "Кофемашина включена";
+        Decorator.border(ternOn);
         mainMenu();
     }
 
     private void turnOff() {
         Decorator.indent(30);
-        Decorator.border();
-        System.out.println(whitespace.repeat(10) + "Кофемашина выключена");
-        Decorator.border();
+        String ternOff = whitespace.repeat(10) + "Кофемашина включена";
+        Decorator.border(ternOff);
     }
 
 
     public void mainMenu() {
-        Decorator.border();
-        int mainMenuNum;
-        System.out.print("1. Приготовление кофе\n" +
+        String mainMenu = "1. Приготовление кофе\n" +
                 "2. Обслуживание\n" +
                 "3. Логирование\n" +
-                "Выберите пункт меню: ");
-        Decorator.border();
-        if (sc.nextInt() == 1) {
+                "0. Выключить кофемашину ";
+        Decorator.border(mainMenu);
+        System.out.print("Выберите пункт меню: ");
+        int num1 = sc.nextInt();
+        switch (num1) {
+            case 1 -> makingCoffeeMenu();
+            case 2 -> serviceMenu();
+            case 3 -> turnOff();
+        }
+    }
 
-        } else if (sc.nextInt() == 2) {
+    public void makingCoffeeMenu() {
+        Decorator.indent(30);
+        String makingCoffeeMenu = "    ПРИГОТОВЛЕНИЕ\n" +
+                "1. Эспрессо\n" +
+                "2. Капучино\n" +
+                "3. Три порции любого\n" +
+                "4. Профили\n" +
+                "5. Создать профиль\n" +
+                "0. Главное меню";
+        Decorator.border(makingCoffeeMenu);
+        System.out.print("Выберите пункт меню: ");
+        int num = sc.nextInt();
+        switch (num) {
+            case 1-> {
+                String espresso = ingredients.espresso(1);
+                System.out.println(espresso);
+            }
+            case 0-> {
+                Decorator.indent(30);
+                mainMenu();
+            }
 
-        } else if (sc.nextInt() == 3) {
+
+        }
+
+
+    }
+
+    public void serviceMenu() {
+        Decorator.indent(30);
+        String serviceMenuString = "     ОБСЛУЖИВАНИЕ\n" +
+                "  Остаток:\n" +
+                "    - бокс для кофе:      " + ingredients.getCoffee() +
+                "\n    - емкость для воды:   " + ingredients.getWater() +
+                "\n    - емкость для молока: " + ingredients.getMilk() +
+                "\n1. Добавить кофе\n" +
+                "2. Добавить воды\n" +
+                "3. Добавить молока\n" +
+                "0. Главное меню";
+        Decorator.border(serviceMenuString);
+        System.out.print("Выберите пункт меню: ");
+        int num = sc.nextInt();
+        switch (num) {
+            case 0:
+                Decorator.indent(30);
+                mainMenu();
+
 
         }
 
