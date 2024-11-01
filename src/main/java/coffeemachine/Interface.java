@@ -47,10 +47,9 @@ public class Interface {
                 case 2 -> serviceMenu();
                 case 3 -> turnOff();
             }
-
-                Decorator.border(mainMenu);
-                System.out.print("Выберите пункт меню: ");
-                num = sc.nextInt();
+            Decorator.border(mainMenu);
+            System.out.print("Выберите пункт меню: ");
+            num = sc.nextInt();
 
         }
 
