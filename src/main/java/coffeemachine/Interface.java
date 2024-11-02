@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Interface {
 
     Scanner sc = new Scanner(System.in);
-    Ingredients ingredients = new Ingredients(500, 1000, 500);
+    Making making = new Making(500, 1000, 500);
 
     static String whitespace = " ";
 
@@ -45,15 +45,10 @@ public class Interface {
         while (num != 0) {
 
             switch (num) {
-                case 1 -> {
-                    makingCoffeeMenu();
-                    num = 0;}
-                case 2 -> {
-                    serviceMenu();
-                    num = 0;}
+                case 1 -> makingCoffeeMenu();
+                case 2 -> serviceMenu();
 
             }
-
             Decorator.border(mainMenu);
             System.out.print("Выберите пункт меню: ");
             num = sc.nextInt();
@@ -75,7 +70,7 @@ public class Interface {
         int num = sc.nextInt();
         switch (num) {
             case 1-> {
-                String espresso = ingredients.espresso(1);
+                String espresso = making.espresso(1);
                 System.out.println(espresso);
             }
 
@@ -88,9 +83,9 @@ public class Interface {
         Decorator.indent(30);
         String serviceMenuString = "     ОБСЛУЖИВАНИЕ\n" +
                 "  Остаток:\n" +
-                "    - бокс для кофе:      " + ingredients.getCoffee() +
-                "\n    - емкость для воды:   " + ingredients.getWater() +
-                "\n    - емкость для молока: " + ingredients.getMilk() +
+                "    - бокс для кофе:      " + making.getCoffee() +
+                "\n    - емкость для воды:   " + making.getWater() +
+                "\n    - емкость для молока: " + making.getMilk() +
                 "\n1. Добавить кофе\n" +
                 "2. Добавить воды\n" +
                 "3. Добавить молока\n" +
