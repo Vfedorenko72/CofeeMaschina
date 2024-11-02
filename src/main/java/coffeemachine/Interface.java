@@ -9,26 +9,27 @@ public class Interface {
 
     static String whitespace = " ";
 
-    public void launch(int num) {
+    /*public void launch(int num) {
         // Сдесь нужна проверка валидации, пропускаем только 1 и 0
         if (num == 1) {
             turnOn();
+            mainMenu();
         } else {
             turnOff();
         }
-    }
+    }*/
 
 
-    private void turnOn() {
+    public void turnOn(int num) {
         Decorator.indent(30);
         String ternOn = whitespace.repeat(10) + "Кофемашина включена";
         Decorator.border(ternOn);
-        mainMenu();
+
     }
 
-    private void turnOff() {
+    public void turnOff(int num) {
         Decorator.indent(30);
-        String ternOff = whitespace.repeat(10) + "Кофемашина включена";
+        String ternOff = whitespace.repeat(10) + "Кофемашина выключена";
         Decorator.border(ternOff);
     }
 
@@ -42,15 +43,20 @@ public class Interface {
         System.out.print("Выберите пункт меню: ");
         int num = sc.nextInt();
         while (num != 0) {
+
             switch (num) {
-                case 1 -> makingCoffeeMenu();
-                case 2 -> serviceMenu();
-                case 3 -> turnOff();
+                case 1 -> {
+                    makingCoffeeMenu();
+                    num = 0;}
+                case 2 -> {
+                    serviceMenu();
+                    num = 0;}
+
             }
+
             Decorator.border(mainMenu);
             System.out.print("Выберите пункт меню: ");
             num = sc.nextInt();
-
         }
 
     }
@@ -72,11 +78,6 @@ public class Interface {
                 String espresso = ingredients.espresso(1);
                 System.out.println(espresso);
             }
-            case 0-> {
-                Decorator.indent(30);
-                mainMenu();
-            }
-
 
         }
 
@@ -96,8 +97,8 @@ public class Interface {
                 "0. Главное меню";
         Decorator.border(serviceMenuString);
         System.out.print("Выберите пункт меню: ");
-        int num = sc.nextInt();
-        switch (num) {
+        int numS = sc.nextInt();
+        switch (numS) {
             case 0:
                 Decorator.indent(30);
                 mainMenu();
