@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Interface {
 
     Scanner sc = new Scanner(System.in);
-    Making making = new Making(500, 1000, 500);
+    Service service = new Service(500, 1000, 500);
+   // Making making = new Making(500, 1000, 500);
 
     static String whitespace = " ";
 
@@ -83,9 +84,9 @@ public class Interface {
         Decorator.indent(30);
         String serviceMenuString = "     ОБСЛУЖИВАНИЕ\n" +
                 "  Остаток:\n" +
-                "    - бокс для кофе:      " + making.getCoffee() +
-                "\n    - емкость для воды:   " + making.getWater() +
-                "\n    - емкость для молока: " + making.getMilk() +
+                "    - бокс для кофе:      " + service.getCoffee() +
+                "\n    - емкость для воды:   " + service.getWater() +
+                "\n    - емкость для молока: " + service.getMilk() +
                 "\n1. Добавить кофе\n" +
                 "2. Добавить воды\n" +
                 "3. Добавить молока\n" +
