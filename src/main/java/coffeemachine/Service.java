@@ -25,8 +25,24 @@ public class Service {
 
 
     public void addCoffee(int qty) {
-        String addCoffee = "Введите вес добавляемого кофе в граммах";
+        int cenAdd = volumeCoffee - coffee;
+        String msgAddCoffee = "Введите вес добавляемого кофе в граммах";
+        String coffeeDoesntFit = "в данный момент вы можете добавить не более " + cenAdd + " грамм кофе."
+        String
+        while (true) {
+            Decorator.border(msgAddCoffee);
+            int addCoffee = sc.nextInt();
+            if (addCoffee >= volumeCoffee - coffee) {
+                Decorator.border(coffeeDoesntFit);
+            } else {
 
-        if (sc.nextInt() )
+            }
+
+        }
+
+
+
+
+
     }
 }
