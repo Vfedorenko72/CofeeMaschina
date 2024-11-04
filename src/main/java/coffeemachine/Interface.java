@@ -10,17 +10,6 @@ public class Interface {
 
     static String whitespace = " ";
 
-    /*public void launch(int num) {
-        // Сдесь нужна проверка валидации, пропускаем только 1 и 0
-        if (num == 1) {
-            turnOn();
-            mainMenu();
-        } else {
-            turnOff();
-        }
-    }*/
-
-
     public void turnOn(int num) {
         Decorator.indent(30);
         String ternOn = whitespace.repeat(10) + "Кофемашина включена";
@@ -46,7 +35,6 @@ public class Interface {
         System.out.print("Выберите пункт меню: ");
         int num = sc.nextInt();
         while (num != 0) {
-
             switch (num) {
                 case 1 -> makingCoffeeMenu(service);
                 case 2 -> serviceMenu();
@@ -71,25 +59,23 @@ public class Interface {
                 0. Главное меню
                 
                 """;
+        String selectMenuItem = "Выберите пункт меню: ";
+        String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.border(makingCoffeeMenu);
-        System.out.print("Выберите пункт меню: ");
+        Decorator.print(selectMenuItem);
         int num = sc.nextInt();
-        System.out.print("Выберите количество чашек: ");
-        int qtyCups = sc.nextInt();
+
         while (num != 0) {
+            Decorator.print(qtyCupsStr);
+            int qtyCups = sc.nextInt();
             switch (num) {
-                case 1 -> making.espresso(qtyCups,service);
+                case 1 -> making.espresso(qtyCups, service);
+                case 2 -> making.cappuccino(qtyCups, service);
             }
-
+            Decorator.border(makingCoffeeMenu);
+            Decorator.print(selectMenuItem);
+            num = sc.nextInt();
         }
-        /*switch (num) {
-            case 1-> {
-                String espresso = making.espresso(1);
-                System.out.println(espresso);
-            }
-
-        }*/
-
 
     }
 
@@ -104,17 +90,23 @@ public class Interface {
                 "\n2. Добавить воды " +
                 "\n3. Добавить молока " +
                 "\n0. Главное меню";
+        String selectMenuItem = "Выберите пункт меню: ";
+        String specifyQuantity = "Укажите количество: ";
+
         Decorator.border(serviceMenuString);
-        System.out.print("Выберите пункт меню: ");
-        int numS = sc.nextInt();
-        switch (numS) {
-            case 0:
-                Decorator.indent(30);
-                mainMenu();
+        Decorator.print(selectMenuItem);
 
+        int num = sc.nextInt();
+        while (num != 0) {
+            Decorator.print(specifyQuantity);
+            int quantity = sc.nextInt();
+            switch (num) {
+                case 1 -> service.addCoffee(quantity);
+                case 2 -> service.addWater(quantity);
+                case 3 -> service.addMilk(quantity);
 
+            }
         }
-
     }
 
 }

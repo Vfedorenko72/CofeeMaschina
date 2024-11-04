@@ -15,10 +15,6 @@ public class CoffeeMachine {
         inter.mainMenu();
         inter.turnOff(0);
 
-        // Ingredients ingredients = new Ingredients(10,10,10);
-
-        //String all = ingredients.checkAll();//получаем текущую информацию о всех ингредиентах
-        //System.out.println(all);
 
     }
 
