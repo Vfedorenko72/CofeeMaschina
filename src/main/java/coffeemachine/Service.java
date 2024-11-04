@@ -7,6 +7,7 @@ public class Service {
     private int coffee;
     private int water;
     private int milk;
+    private int clearing;
     private static final int volumeCoffee = 500;
     private static final int volumeWater = 1000;
     private static final int volumeMilk = 500;
@@ -17,6 +18,7 @@ public class Service {
         this.coffee = coffee;
         this.water = water;
         this.milk = milk;
+        this.clearing = 0;
 
     }
 
@@ -126,30 +128,33 @@ public class Service {
                 "\n    - емкость для молока: " + milk + "миллилитров";
     }
 
-    // Убавить кофе
-    public int decreaseCoffee(int decreaseCoffee) {
+
+    // Убавить ингредиенты
+    public int decreaseIngredients(int decreaseCoffee, int decreaseWater, int decreaseMilk) {
         if (coffee - decreaseCoffee < 0) {
-            return -1;//что-то пошло не так
+            return -1;                             //что-то пошло не так
+        } else if (water - decreaseWater < 0) {
+            return -2;
+        } else if (milk - decreaseMilk < 0) {
+            return -3;
         }
-        coffee -= decreaseCoffee;
-        return coffee;
+        return 0;
+
     }
 
-    // Убавить воду
-    public int decreaseWater(int decreaseWater) {
-        if (water - decreaseWater < 0) {
-            return -1;
+    public int needsClearing(int qty) {
+
+        if (clearing + qty > 50) {
+           return -1;
+        } else {
+            clearing += qty;
+            return 0;
         }
-        water -= decreaseWater;
-        return water;
     }
 
-    // Убавить молоко
-    public int decreaseMilk(int decreaseMilk) {
-        if (milk - decreaseMilk < 0) {
-            return -1;
-        }
-        milk -= decreaseMilk;
-        return water;
+    public void clearing() {
+        clearing = 0;
     }
+
+
 }

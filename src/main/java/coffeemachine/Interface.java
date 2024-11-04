@@ -38,13 +38,21 @@ public class Interface {
             switch (num) {
                 case 1 -> makingCoffeeMenu(service);
                 case 2 -> serviceMenu();
-                case 3-> System.out.println(making.getLog());
+                case 3 -> {
+                    System.out.println(" ".repeat(5) + "ЛОГИ");
+                    Decorator.print(making.getLog());
+                }
+                case 4 -> {
+                    Decorator.indent(30);
+                    Decorator.print(service.remains());
+                }
 
             }
             Decorator.border(mainMenu);
             System.out.print("Выберите пункт меню: ");
             num = sc.nextInt();
         }
+
 
     }
 
@@ -67,6 +75,7 @@ public class Interface {
         while (num != 0) {
             Decorator.print(qtyCupsStr);
             int qtyCups = sc.nextInt();
+            Decorator.indent(30);
             switch (num) {
                 case 1 -> making.espresso(qtyCups, service);
                 case 2 -> making.cappuccino(qtyCups, service);
@@ -75,6 +84,7 @@ public class Interface {
             Decorator.print(selectMenuItem);
             num = sc.nextInt();
         }
+        Decorator.indent(30);
 
     }
 
@@ -88,6 +98,7 @@ public class Interface {
                 "\n1. Добавить кофе " +
                 "\n2. Добавить воды " +
                 "\n3. Добавить молока " +
+                "\n4. Очистить кофемашину " +
                 "\n0. Главное меню";
         String selectMenuItem = "Выберите пункт меню: ";
 
@@ -99,11 +110,14 @@ public class Interface {
                 case 1 -> service.addCoffee();
                 case 2 -> service.addWater();
                 case 3 -> service.addMilk();
+                case 4 -> service.clearing();
             }
             Decorator.border(serviceMenuString);
             Decorator.print(selectMenuItem);
             num = sc.nextInt();
         }
+        Decorator.indent(30);
     }
+
 
 }

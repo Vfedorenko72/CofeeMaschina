@@ -11,6 +11,7 @@ public class Making {
     public void espresso(int qty, Service service) {
         int quantityCoffee = qty * 10;
         int quantityWater = qty * 40;
+        int quantityMilk = 0;
         String notEnoughCoffee = """
                 Не достаточно кофе.
                 Для добавления кофе перейдите:
@@ -22,21 +23,30 @@ public class Making {
                 Главное меню -> Обслуживание -> Добавить воды
                 """;
         String take = "Заберите пожалуйста ваш кофе";
+        String clearingStr = """
+                Необходимо очистить емкость с отходами кофе.
+                Главное меню -> Обслуживание -> Очистка""";
 
 
         // Проверка, что не закончились ингредиенты
-        int coffee = service.decreaseCoffee(quantityCoffee);
-        if (coffee == -1) {
-            Decorator.print(notEnoughCoffee);
-            return;
+        int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
+        switch (ingredientsCode) {
+            case -1 -> {
+                Decorator.print(notEnoughCoffee);
+                return;
+            }
+            case -2 -> {
+                Decorator.print(notEnoughWater);
+                return;
+            }
         }
-        int water = service.decreaseWater(quantityWater);
-        if (water == -1) {
-            Decorator.print(notEnoughWater);
-            return;
+        int clearing = service.needsClearing(qty);
+        if (clearing == -1) {
+            Decorator.print(clearingStr);
         }
 
         Decorator.print(take);
+        System.out.println();
         Decorator.print(service.remains());
         coffeeLog.add("Эспрессо");
 
@@ -46,6 +56,7 @@ public class Making {
         int quantityCoffee = qty * 10;
         int quantityWater = qty * 40;
         int quantityMilk = qty * 100;
+
         String notEnoughCoffee = """
                 Не достаточно кофе.
                 Для добавления кофе перейдите:
@@ -65,26 +76,25 @@ public class Making {
         String take = "Заберите пожалуйста ваш кофе";
 
         // Проверка, что не закончились ингредиенты
-        int coffee = service.decreaseCoffee(quantityCoffee);
-        if (coffee == -1) {
-            Decorator.border(notEnoughCoffee);
-            return;
-        }
-        int water = service.decreaseWater(quantityWater);
-        if (water == -1) {
-            Decorator.border(notEnoughWater);
-            return;
-        }
+        int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
 
-        int milk = service.decreaseMilk(quantityMilk);
-        if (milk == -1) {
-            Decorator.border(notEnoughMilk);
-            return;
+        switch (ingredientsCode) {
+            case -1 -> {
+                Decorator.print(notEnoughCoffee);
+                return;
+            }
+            case -2 -> {
+                Decorator.print(notEnoughWater);
+                return;
+            }
+            case -3 -> {
+                Decorator.print(notEnoughMilk);
+                return;
+            }
         }
-
-
 
         Decorator.print(take);
+        System.out.println();
         Decorator.print(service.remains());
 
     }
@@ -92,6 +102,7 @@ public class Making {
     public String getLog(){
         return String.join("\n",coffeeLog);
     }
+
 
 
 }
