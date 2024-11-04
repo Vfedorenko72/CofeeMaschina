@@ -90,11 +90,8 @@ public class Interface {
 
     public void serviceMenu() {
         Decorator.indent(30);
+        Decorator.print(service.remains());
         String serviceMenuString = " ОБСЛУЖИВАНИЕ " +
-                "\n  Остаток:" +
-                "\n    - бокс для кофе:      " + service.getCoffee() +
-                "\n    - емкость для воды:   " + service.getWater() +
-                "\n    - емкость для молока: " + service.getMilk()  +
                 "\n1. Добавить кофе " +
                 "\n2. Добавить воды " +
                 "\n3. Добавить молока " +

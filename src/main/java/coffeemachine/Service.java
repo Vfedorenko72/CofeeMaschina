@@ -46,6 +46,7 @@ public class Service {
         while (!ready) {
             Decorator.print(msgAddCoffee);
             int addCoffee = sc.nextInt();
+            Decorator.indent(30);
             if (addCoffee !=0) {
                 if (addCoffee < minAddCoffee) {
                     Decorator.print(strMinAddCoffee);
@@ -54,8 +55,9 @@ public class Service {
                     Decorator.print(coffeeDoesntFit);
                 } else {
                     coffee += addCoffee;
-                    System.out.println(coffee);
-                    Decorator.print(coffeeInBox + coffee + "грамм кофе.");
+                    Decorator.print(coffeeInBox + coffee + " грамм кофе.");
+                    System.out.println();
+                    Decorator.print(remains());
                     ready = true;
                 }
             } else {
@@ -74,16 +76,19 @@ public class Service {
         String strMinAddWater = "Минимальное количество добавляемой воды 40 милилитров.";
         boolean ready = false;
         while (!ready) {
-            Decorator.border(msgAddWater);
+            Decorator.print(msgAddWater);
             int addWater = sc.nextInt();
+            Decorator.indent(30);
             if (addWater != 0) {
                 if (addWater < minAddWater) {
-                    Decorator.border(strMinAddWater);
-                } else if (addWater >= cenAddWater) {
-                    Decorator.border(waterDoesntFit);
+                    Decorator.print(strMinAddWater);
+                } else if (addWater > cenAddWater) {
+                    Decorator.print(waterDoesntFit);
                 } else {
                     water += addWater;
-                    Decorator.border(waterInBox + water + "миллилитров воды.");
+                    Decorator.print(waterInBox + water + "миллилитров воды.");
+                    System.out.println();
+                    Decorator.print(remains());
                     ready = true;
                 }
             } else {
@@ -102,16 +107,19 @@ public class Service {
         String strMinAddMilk = "Минимальное количество добавляемого молока 80 миллилитров.";
         boolean ready = false;
         while (!ready) {
-            Decorator.border(msgAddMilk);
+            Decorator.print(msgAddMilk);
             int addMilk = sc.nextInt();
+            Decorator.indent(30);
             if (addMilk != 0) {
                 if (addMilk < minAddMilk) {
-                    Decorator.border(strMinAddMilk);
+                    Decorator.print(strMinAddMilk);
                 } else if (addMilk >= cenAddMilk) {
-                    Decorator.border(milkDoesntFit);
+                    Decorator.print(milkDoesntFit);
                 } else {
                     milk += addMilk;
-                    Decorator.border(milkInBox + milk + "миллилитров молока.");
+                    Decorator.print(milkInBox + milk + "миллилитров молока.");
+                    System.out.println();
+                    Decorator.print(remains());
                     ready = true;
                 }
             } else {
@@ -123,9 +131,9 @@ public class Service {
     // Остаток
     public String remains() {
         return "   Остаток:\n" +
-                "    - бокс для кофе:      " + coffee + "грамм" +
-                "\n    - емкость для воды:   " + water + "миллилитров" +
-                "\n    - емкость для молока: " + milk + "миллилитров";
+                "    - бокс для кофе:      " + coffee + " грамм" +
+                "\n    - емкость для воды:   " + water + " миллилитров" +
+                "\n    - емкость для молока: " + milk + " миллилитров";
     }
 
 
@@ -138,6 +146,9 @@ public class Service {
         } else if (milk - decreaseMilk < 0) {
             return -3;
         }
+        coffee -= decreaseCoffee;
+        water -= decreaseWater;
+        milk -= decreaseMilk;
         return 0;
 
     }
