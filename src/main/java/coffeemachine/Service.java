@@ -32,7 +32,7 @@ public class Service {
         return milk;
     }
 
-
+    // Добавить кофе
     public void addCoffee(int qty) {
         int cenAddCoffee = volumeCoffee - coffee;
         int minAddCoffee = 10;
@@ -57,6 +57,7 @@ public class Service {
 
     }
 
+    // Добавить воды
     public void addWater(int qty) {
         int cenAddWater = volumeWater - water;
         int minAddWater = 40;
@@ -80,35 +81,68 @@ public class Service {
         }
 
     }
-
-    public void addMilk(int qty) {
+    // Добавить молока
+    public void addMilk() {
         int cenAddMilk = volumeMilk - milk;
         int minAddMilk = 80;
-        String msgAddMilk = "Введите объем добавляемого молока в миллилитрах";
-        String milkDoesntFit = "В данный момент вы можете добавить не более " + cenAddMilk + " милллилитров молока.";
+        String msgAddMilk = "Введите объем добавляемого молока в миллилитрах или -1 для отмены";
+        String milkDoesntFit = "В данный момент вы можете добавить не более " + cenAddMilk + " миллилитров молока.";
         String milkInBox = "Емкость с молоком наполнена, в емкости: " + milk + "миллилитров молока.";
-        String strMinAddMilk = "Минимальное количество добавляемого молока 80 милилитров.";
-        while (true) {
+        String strMinAddMilk = "Минимальное количество добавляемого молока 80 миллилитров.";
+        boolean ready = false;
+        while (!ready) {
             Decorator.border(msgAddMilk);
             int addMilk = sc.nextInt();
-            if (addMilk < minAddMilk) {
-                Decorator.border(strMinAddMilk);
-            } else if (addMilk >= cenAddMilk) {
-                Decorator.border(milkDoesntFit);
+            if (addMilk != -1) {
+                if (addMilk < minAddMilk) {
+                    Decorator.border(strMinAddMilk);
+                } else if (addMilk >= cenAddMilk) {
+                    Decorator.border(milkDoesntFit);
+                } else {
+                    milk += addMilk;
+                    Decorator.border(milkInBox);
+                    ready = true;
+                }
             } else {
-                milk += addMilk;
-                Decorator.border(milkInBox);
-                break;
+                ready = true;
             }
 
         }
 
     }
 
-
-    public void remains() {
-        String strRemains =
+    // Остаток
+    public String remains() {
+        return "   Остаток:\n" +
+                "    - бокс для кофе:      " + coffee + "грамм" +
+                "\n    - емкость для воды:   " + water + "миллилитров" +
+                "\n    - емкость для молока: " + milk + "миллилитров";
     }
 
+    // Убавить кофе
+    public int decreaseCoffee(int decreaseCoffee) {
+        if (coffee - decreaseCoffee < 0) {
+            return -1;//что-то пошло не так
+        }
+        coffee -= decreaseCoffee;
+        return coffee;
+    }
 
+    // Убавить воду
+    public int decreaseWater(int decreaseWater) {
+        if (water - decreaseWater < 0) {
+            return -1;
+        }
+        water -= decreaseWater;
+        return water;
+    }
+
+    // Убавить молоко
+    public int decreaseMilk(int decreaseMilk) {
+        if (water - decreaseMilk < 0) {
+            return -1;
+        }
+        water -= decreaseMilk;
+        return water;
+    }
 }

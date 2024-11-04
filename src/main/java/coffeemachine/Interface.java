@@ -6,7 +6,7 @@ public class Interface {
 
     Scanner sc = new Scanner(System.in);
     Service service = new Service(500, 1000, 500);
-   // Making making = new Making(500, 1000, 500);
+    Making making = new Making();
 
     static String whitespace = " ";
 
@@ -36,17 +36,19 @@ public class Interface {
 
 
     public void mainMenu() {
-        String mainMenu = "1. Приготовление кофе\n" +
-                "2. Обслуживание\n" +
-                "3. Логирование\n" +
-                "0. Выключить кофемашину ";
+        String mainMenu = """
+                1. Приготовление кофе
+                2. Обслуживание
+                3. Логирование
+                4. Посмотреть остатки
+                0. Выключить кофемашину""";
         Decorator.border(mainMenu);
         System.out.print("Выберите пункт меню: ");
         int num = sc.nextInt();
         while (num != 0) {
 
             switch (num) {
-                case 1 -> makingCoffeeMenu();
+                case 1 -> makingCoffeeMenu(service);
                 case 2 -> serviceMenu();
 
             }
@@ -57,40 +59,51 @@ public class Interface {
 
     }
 
-    public void makingCoffeeMenu() {
+    public void makingCoffeeMenu(Service service) {
         Decorator.indent(30);
-        String makingCoffeeMenu = "    ПРИГОТОВЛЕНИЕ\n" +
-                "1. Эспрессо\n" +
-                "2. Капучино\n" +
-                "3. Три порции любого\n" +
-                "4. Профили\n" +
-                "5. Создать профиль\n" +
-                "0. Главное меню";
+        String makingCoffeeMenu = """
+                    ПРИГОТОВЛЕНИЕ
+                1. Эспрессо
+                2. Капучино
+                3. Три порции любого
+                4. Профили
+                5. Создать профиль
+                0. Главное меню
+                
+                """;
         Decorator.border(makingCoffeeMenu);
         System.out.print("Выберите пункт меню: ");
         int num = sc.nextInt();
-        switch (num) {
+        System.out.print("Выберите количество чашек: ");
+        int qtyCups = sc.nextInt();
+        while (num != 0) {
+            switch (num) {
+                case 1 -> making.espresso(qtyCups,service);
+            }
+
+        }
+        /*switch (num) {
             case 1-> {
                 String espresso = making.espresso(1);
                 System.out.println(espresso);
             }
 
-        }
+        }*/
 
 
     }
 
     public void serviceMenu() {
         Decorator.indent(30);
-        String serviceMenuString = "     ОБСЛУЖИВАНИЕ\n" +
-                "  Остаток:\n" +
-                "    - бокс для кофе:      " + service.getCoffee() +
+        String serviceMenuString = " ОБСЛУЖИВАНИЕ " +
+                "\n  Остаток:" +
+                "\n    - бокс для кофе:     " + service.getCoffee() +
                 "\n    - емкость для воды:   " + service.getWater() +
-                "\n    - емкость для молока: " + service.getMilk() +
-                "\n1. Добавить кофе\n" +
-                "2. Добавить воды\n" +
-                "3. Добавить молока\n" +
-                "0. Главное меню";
+                "\n    - емкость для молока: " + service.getMilk()  +
+                "\n1. Добавить кофе " +
+                "\n2. Добавить воды " +
+                "\n3. Добавить молока " +
+                "\n0. Главное меню";
         Decorator.border(serviceMenuString);
         System.out.print("Выберите пункт меню: ");
         int numS = sc.nextInt();
