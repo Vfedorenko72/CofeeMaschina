@@ -38,6 +38,7 @@ public class Interface {
             switch (num) {
                 case 1 -> makingCoffeeMenu(service);
                 case 2 -> serviceMenu();
+                case 3-> System.out.println(making.getLog());
 
             }
             Decorator.border(mainMenu);
@@ -56,9 +57,7 @@ public class Interface {
                 3. Три порции любого
                 4. Профили
                 5. Создать профиль
-                0. Главное меню
-                
-                """;
+                0. Главное меню""";
         String selectMenuItem = "Выберите пункт меню: ";
         String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.border(makingCoffeeMenu);
@@ -83,7 +82,7 @@ public class Interface {
         Decorator.indent(30);
         String serviceMenuString = " ОБСЛУЖИВАНИЕ " +
                 "\n  Остаток:" +
-                "\n    - бокс для кофе:     " + service.getCoffee() +
+                "\n    - бокс для кофе:      " + service.getCoffee() +
                 "\n    - емкость для воды:   " + service.getWater() +
                 "\n    - емкость для молока: " + service.getMilk()  +
                 "\n1. Добавить кофе " +
@@ -91,21 +90,19 @@ public class Interface {
                 "\n3. Добавить молока " +
                 "\n0. Главное меню";
         String selectMenuItem = "Выберите пункт меню: ";
-        String specifyQuantity = "Укажите количество: ";
 
         Decorator.border(serviceMenuString);
         Decorator.print(selectMenuItem);
-
         int num = sc.nextInt();
         while (num != 0) {
-            Decorator.print(specifyQuantity);
-            int quantity = sc.nextInt();
             switch (num) {
-                case 1 -> service.addCoffee(quantity);
-                case 2 -> service.addWater(quantity);
-                case 3 -> service.addMilk(quantity);
-
+                case 1 -> service.addCoffee();
+                case 2 -> service.addWater();
+                case 3 -> service.addMilk();
             }
+            Decorator.border(serviceMenuString);
+            Decorator.print(selectMenuItem);
+            num = sc.nextInt();
         }
     }
 

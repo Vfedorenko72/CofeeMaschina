@@ -1,8 +1,11 @@
 package coffeemachine;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Making {
+    private List<String> coffeeLog = new ArrayList<>();
 
     // Приготовить эспрессо
     public void espresso(int qty, Service service) {
@@ -19,28 +22,23 @@ public class Making {
                 Главное меню -> Обслуживание -> Добавить воды
                 """;
         String take = "Заберите пожалуйста ваш кофе";
-        /*String notEnoughMilk = """
-                Не достаточно молока.
-                Для добавления молока перейдите:
-                Главное меню -> Обслуживание -> Добавить молока
-                """;*/
 
 
         // Проверка, что не закончились ингредиенты
         int coffee = service.decreaseCoffee(quantityCoffee);
         if (coffee == -1) {
-            Decorator.border(notEnoughCoffee);
+            Decorator.print(notEnoughCoffee);
             return;
         }
         int water = service.decreaseWater(quantityWater);
         if (water == -1) {
-            Decorator.border(notEnoughWater);
+            Decorator.print(notEnoughWater);
             return;
         }
-        //int milk = service.decreaseMilk(quantityMilk);
 
         Decorator.print(take);
-        Decorator.border(service.remains());
+        Decorator.print(service.remains());
+        coffeeLog.add("Эспрессо");
 
     }
 
@@ -87,8 +85,12 @@ public class Making {
 
 
         Decorator.print(take);
-        Decorator.border(service.remains());
+        Decorator.print(service.remains());
 
+    }
+
+    public String getLog(){
+        return String.join("\n",coffeeLog);
     }
 
 

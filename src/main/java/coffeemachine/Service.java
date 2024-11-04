@@ -33,26 +33,27 @@ public class Service {
     }
 
     // Добавить кофе
-    public void addCoffee(int qty) {
+    public void addCoffee() {
         int cenAddCoffee = volumeCoffee - coffee;
         int minAddCoffee = 10;
-        String msgAddCoffee = "Введите вес добавляемого кофе в граммах или 0 для отмены";
+        String msgAddCoffee = "Введите вес добавляемого кофе в граммах или 0 для отмены: ";
         String coffeeDoesntFit = "В данный момент вы можете добавить не более " + cenAddCoffee + " грамм кофе.";
-        String coffeeInBox = "Бокс с кофе пополнен, в боксе: " + coffee + "грамм кофе.";
+        String coffeeInBox = "Бокс с кофе пополнен, в боксе: " ;
         String strMinAddCoffee = "Минимальное количество добавляемого кофе 10 грамм.";
         boolean ready = false;
         while (!ready) {
-            Decorator.border(msgAddCoffee);
+            Decorator.print(msgAddCoffee);
             int addCoffee = sc.nextInt();
             if (addCoffee !=0) {
                 if (addCoffee < minAddCoffee) {
-                    Decorator.border(strMinAddCoffee);
+                    Decorator.print(strMinAddCoffee);
                     return;
-                } else if (addCoffee >= cenAddCoffee) {
-                    Decorator.border(coffeeDoesntFit);
+                } else if (addCoffee > cenAddCoffee) {
+                    Decorator.print(coffeeDoesntFit);
                 } else {
                     coffee += addCoffee;
-                    Decorator.border(coffeeInBox);
+                    System.out.println(coffee);
+                    Decorator.print(coffeeInBox + coffee + "грамм кофе.");
                     ready = true;
                 }
             } else {
@@ -62,12 +63,12 @@ public class Service {
     }
 
     // Добавить воды
-    public void addWater(int qty) {
+    public void addWater() {
         int cenAddWater = volumeWater - water;
         int minAddWater = 40;
-        String msgAddWater = "Введите объем добавляемой воды в миллилитрах или 0 для отмены";
+        String msgAddWater = "Введите объем добавляемой воды в миллилитрах или 0 для отмены: ";
         String waterDoesntFit = "В данный момент вы можете добавить не более " + cenAddWater + " милллилитров воды.";
-        String waterInBox = "Емкость с водой наполнена, в емкости: " + water + "миллилитров воды.";
+        String waterInBox = "Емкость с водой наполнена, в емкости: ";
         String strMinAddWater = "Минимальное количество добавляемой воды 40 милилитров.";
         boolean ready = false;
         while (!ready) {
@@ -80,7 +81,7 @@ public class Service {
                     Decorator.border(waterDoesntFit);
                 } else {
                     water += addWater;
-                    Decorator.border(waterInBox);
+                    Decorator.border(waterInBox + water + "миллилитров воды.");
                     ready = true;
                 }
             } else {
@@ -90,12 +91,12 @@ public class Service {
     }
 
     // Добавить молока
-    public void addMilk(int qty) {
+    public void addMilk() {
         int cenAddMilk = volumeMilk - milk;
         int minAddMilk = 80;
         String msgAddMilk = "Введите объем добавляемого молока в миллилитрах или 0 для отмены";
         String milkDoesntFit = "В данный момент вы можете добавить не более " + cenAddMilk + " миллилитров молока.";
-        String milkInBox = "Емкость с молоком наполнена, в емкости: " + milk + "миллилитров молока.";
+        String milkInBox = "Емкость с молоком наполнена, в емкости: ";
         String strMinAddMilk = "Минимальное количество добавляемого молока 80 миллилитров.";
         boolean ready = false;
         while (!ready) {
@@ -108,7 +109,7 @@ public class Service {
                     Decorator.border(milkDoesntFit);
                 } else {
                     milk += addMilk;
-                    Decorator.border(milkInBox);
+                    Decorator.border(milkInBox + milk + "миллилитров молока.");
                     ready = true;
                 }
             } else {

@@ -27,6 +27,6 @@ public class Decorator {
     }
 
     public static void print(String str) {
-        System.out.println(str);
+        System.out.print(str);
     }
 }
