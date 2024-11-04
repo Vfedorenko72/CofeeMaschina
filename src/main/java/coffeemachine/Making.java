@@ -5,31 +5,41 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Making {
-    private List<String> coffeeLog = new ArrayList<>();
+    public static List<String> coffeeLog = new ArrayList<>();
+    String notEnoughCoffee = """
+                Не достаточно кофе.
+                Для добавления кофе перейдите:
+                Главное меню -> Обслуживание -> Добавить кофе
+                """;
+    String notEnoughWater = """
+                Не достаточно воды.
+                Для добавления воды перейдите:
+                Главное меню -> Обслуживание -> Добавить воды
+                """;
+    String notEnoughMilk = """
+                Не достаточно молока.
+                Для добавления молока перейдите:
+                Главное меню -> Обслуживание -> Добавить молока
+                """;
+    String take = "Заберите пожалуйста ваш кофе";
+    String clearingStr = """
+                Необходимо очистить емкость с отходами кофе.
+                Главное меню -> Обслуживание -> Очистка""";
 
     // Приготовить эспрессо
     public void espresso(int qty, Service service) {
         int quantityCoffee = qty * 10;
         int quantityWater = qty * 40;
         int quantityMilk = 0;
-        String notEnoughCoffee = """
-                Не достаточно кофе.
-                Для добавления кофе перейдите:
-                Главное меню -> Обслуживание -> Добавить кофе
-                """;
-        String notEnoughWater = """
-                Не достаточно воды.
-                Для добавления воды перейдите:
-                Главное меню -> Обслуживание -> Добавить воды
-                """;
-        String take = "Заберите пожалуйста ваш кофе";
-        String clearingStr = """
-                Необходимо очистить емкость с отходами кофе.
-                Главное меню -> Обслуживание -> Очистка""";
-
 
         // Проверка, что не закончились ингредиенты
         int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
+        int clearing = service.needsClearing(qty);
+        if (clearing == -1) {
+            Decorator.print(clearingStr);
+            return;
+        }
+
         switch (ingredientsCode) {
             case -1 -> {
                 Decorator.print(notEnoughCoffee);
@@ -40,44 +50,26 @@ public class Making {
                 return;
             }
         }
-        int clearing = service.needsClearing(qty);
-        if (clearing == -1) {
-            Decorator.print(clearingStr);
-        }
 
         Decorator.print(take);
         System.out.println();
         Decorator.print(service.remains());
-        coffeeLog.add("Эспрессо");
+        addCoffeeLog("Приготовлено " + qty + " Эспрессо");
 
     }
-
+    // Приготовить капучино
     public void cappuccino (int qty, Service service) {
         int quantityCoffee = qty * 10;
         int quantityWater = qty * 40;
         int quantityMilk = qty * 100;
 
-        String notEnoughCoffee = """
-                Не достаточно кофе.
-                Для добавления кофе перейдите:
-                Главное меню -> Обслуживание -> Добавить кофе
-                """;
-        String notEnoughWater = """
-                Не достаточно воды.
-                Для добавления воды перейдите:
-                Главное меню -> Обслуживание -> Добавить воды
-                """;
-
-        String notEnoughMilk = """
-                Не достаточно молока.
-                Для добавления молока перейдите:
-                Главное меню -> Обслуживание -> Добавить молока
-                """;
-        String take = "Заберите пожалуйста ваш кофе";
-
         // Проверка, что не закончились ингредиенты
         int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
-
+        int clearing = service.needsClearing(qty);
+        if (clearing == -1) {
+            Decorator.print(clearingStr);
+            return;
+        }
         switch (ingredientsCode) {
             case -1 -> {
                 Decorator.print(notEnoughCoffee);
@@ -91,12 +83,18 @@ public class Making {
                 Decorator.print(notEnoughMilk);
                 return;
             }
+
         }
+
 
         Decorator.print(take);
         System.out.println();
         Decorator.print(service.remains());
+        addCoffeeLog("Приготовлено " + qty + " Капучино");
 
+    }
+    public static void addCoffeeLog(String coffeeLogStr) {
+        coffeeLog.add(coffeeLogStr);
     }
 
     public String getLog(){
