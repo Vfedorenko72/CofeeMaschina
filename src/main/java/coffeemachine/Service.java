@@ -2,36 +2,18 @@ package coffeemachine;
 
 import java.util.Scanner;
 
+
+
+
 public class Service {
-
-    private int coffee;
-    private int water;
-    private int milk;
-    private int clearing;
-    private static final int volumeCoffee = 500;
-    private static final int volumeWater = 1000;
-    private static final int volumeMilk = 500;
-
-    public Service(int coffee, int water, int milk) {
-
-        this.coffee = coffee;
-        this.water = water;
-        this.milk = milk;
-        this.clearing = 0;
-
-    }
-
-    public int getCoffee() {
-        return coffee;
-    }
-
-    public int getWater() {
-        return water;
-    }
-
-    public int getMilk() {
-        return milk;
-    }
+    CoffeeMachine coffeeMachine = new CoffeeMachine(500, 1000, 1000);
+    int coffee = coffeeMachine.getCoffee();
+    int water = coffeeMachine.getWater();
+    int milk = coffeeMachine.getMilk();
+    int clearing = coffeeMachine.getClearing();
+    final int volumeCoffee = CoffeeMachine.volumeCoffee;
+    final int volumeWater = CoffeeMachine.volumeWater;
+    final int volumeMilk= CoffeeMachine.volumeMilk;
 
     // Добавить кофе
     public void addCoffee() {

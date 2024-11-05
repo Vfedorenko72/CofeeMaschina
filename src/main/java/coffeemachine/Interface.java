@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Interface {
 
-    Service service = new Service(500, 1000, 500);
+    Service service = new Service();
     Making making = new Making();
     static String whitespace = " ";
 
