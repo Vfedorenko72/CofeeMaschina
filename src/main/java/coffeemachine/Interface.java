@@ -6,8 +6,8 @@ public class Interface {
 
     Service service = new Service();
     Making making = new Making();
-    static String whitespace = " ";
-
+    String whitespace = " ";
+    String selectMenuItem = "Выберите пункт меню: ";
     public void turnOn(int num) {
         Decorator.indent(30);
         String ternOn = whitespace.repeat(10) + "Кофемашина включена";
@@ -30,7 +30,7 @@ public class Interface {
                 4. Посмотреть остатки
                 0. Выключить кофемашину""";
         Decorator.border(mainMenu);
-        System.out.print("Выберите пункт меню: ");
+        Decorator.print(selectMenuItem);
         int num = ScanClass.sc();
         while (num != 0) {
             switch (num) {
@@ -47,7 +47,7 @@ public class Interface {
 
             }
             Decorator.border(mainMenu);
-            System.out.print("Выберите пункт меню: ");
+            Decorator.print(selectMenuItem);
             num = ScanClass.sc();
         }
 
@@ -64,13 +64,17 @@ public class Interface {
                 4. Профили
                 5. Создать профиль
                 0. Главное меню""";
-        String selectMenuItem = "Выберите пункт меню: ";
+
         String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.border(makingCoffeeMenu);
         Decorator.print(selectMenuItem);
         int num = ScanClass.sc();
 
         while (num != 0) {
+            if (num == 3) {
+                threeCoffees();
+                return;
+            }
             Decorator.print(qtyCupsStr);
             int qtyCups = ScanClass.sc();
             Decorator.indent(30);
@@ -95,7 +99,7 @@ public class Interface {
                 "\n3. Добавить молока " +
                 "\n4. Очистить кофемашину " +
                 "\n0. Главное меню";
-        String selectMenuItem = "Выберите пункт меню: ";
+        Decorator.print(selectMenuItem);
 
         Decorator.border(serviceMenuString);
         Decorator.print(selectMenuItem);
@@ -112,6 +116,21 @@ public class Interface {
             num = ScanClass.sc();
         }
         Decorator.indent(30);
+    }
+
+    public void threeCoffees() {
+        String coffeeSetStr = """
+                1. Эспрессо
+                2. Капучино""";
+        Decorator.indent(30);
+        Decorator.border(coffeeSetStr);
+        Decorator.print(selectMenuItem);
+        Decorator.indent(30);
+        int num = ScanClass.sc();
+        switch (num) {
+            case 1 -> making.espresso(3, service);
+            case 2 -> making.cappuccino(3, service);
+        }
     }
 
 }

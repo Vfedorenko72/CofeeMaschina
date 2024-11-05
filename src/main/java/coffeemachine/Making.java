@@ -1,10 +1,18 @@
 package coffeemachine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Making {
     public static List<String> coffeeLog = new ArrayList<>();
+    int[] profile = new int[3];
+    Map<String, > profiles = new HashMap<>();
+
+
+    Map<String, Double> hashMap = new HashMap<>();
+
     String notEnoughCoffee = """
                 Не достаточно кофе.
                 Для добавления кофе перейдите:
@@ -105,6 +113,16 @@ public class Making {
         addCoffeeLog("Приготовлено " + qty + " Капучино");
 
     }
+
+    public void createProfile() {
+        String profileStr = "Введите название профиля: ";
+        String coffeeStr = "Введите количество кофе: ";
+        String waterStr = "Введите количество кофе: ";
+        String milkStr = "Введите количество кофе: ";
+
+        int profile = ScanClass.sc();
+    }
+
     public static void addCoffeeLog(String coffeeLogStr) {
 
         coffeeLog.add(coffeeLogStr);
