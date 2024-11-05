@@ -11,7 +11,6 @@ public class Service {
     private static final int volumeCoffee = 500;
     private static final int volumeWater = 1000;
     private static final int volumeMilk = 500;
-    Scanner sc = new Scanner(System.in);
 
     public Service(int coffee, int water, int milk) {
 
@@ -45,7 +44,7 @@ public class Service {
         boolean ready = false;
         while (!ready) {
             Decorator.print(msgAddCoffee);
-            int addCoffee = sc.nextInt();
+            int addCoffee = ScanClass.sc();
             Decorator.indent(30);
             if (addCoffee !=0) {
                 if (addCoffee < minAddCoffee) {
@@ -80,7 +79,7 @@ public class Service {
         boolean ready = false;
         while (!ready) {
             Decorator.print(msgAddWater);
-            int addWater = sc.nextInt();
+            int addWater = ScanClass.sc();
             Decorator.indent(30);
             if (addWater != 0) {
                 if (addWater < minAddWater) {
@@ -114,7 +113,7 @@ public class Service {
         boolean ready = false;
         while (!ready) {
             Decorator.print(msgAddMilk);
-            int addMilk = sc.nextInt();
+            int addMilk = ScanClass.sc();
             Decorator.indent(30);
             if (addMilk != 0) {
                 if (addMilk < minAddMilk) {

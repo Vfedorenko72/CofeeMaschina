@@ -5,9 +5,8 @@ import java.util.Scanner;
 public class ScanClass {
 
 
-    public static int sca() {
+    public static int sc() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("fd");
         return sc.nextInt();
     }
 }

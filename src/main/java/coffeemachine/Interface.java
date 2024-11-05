@@ -6,7 +6,6 @@ public class Interface {
 
     Service service = new Service(500, 1000, 500);
     Making making = new Making();
-    Scanner sc = new Scanner(System.in);
     static String whitespace = " ";
 
     public void turnOn(int num) {
@@ -32,7 +31,7 @@ public class Interface {
                 0. Выключить кофемашину""";
         Decorator.border(mainMenu);
         System.out.print("Выберите пункт меню: ");
-        int num = sc.nextInt();
+        int num = ScanClass.sc();
         while (num != 0) {
             switch (num) {
                 case 1 -> makingCoffeeMenu(service);
@@ -49,7 +48,7 @@ public class Interface {
             }
             Decorator.border(mainMenu);
             System.out.print("Выберите пункт меню: ");
-            num = sc.nextInt();
+            num = ScanClass.sc();
         }
 
 
@@ -69,11 +68,11 @@ public class Interface {
         String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.border(makingCoffeeMenu);
         Decorator.print(selectMenuItem);
-        int num = sc.nextInt();
+        int num = ScanClass.sc();
 
         while (num != 0) {
             Decorator.print(qtyCupsStr);
-            int qtyCups = sc.nextInt();
+            int qtyCups = ScanClass.sc();
             Decorator.indent(30);
             switch (num) {
                 case 1 -> making.espresso(qtyCups, service);
@@ -81,7 +80,7 @@ public class Interface {
             }
             Decorator.border(makingCoffeeMenu);
             Decorator.print(selectMenuItem);
-            num = sc.nextInt();
+            num = ScanClass.sc();
         }
         Decorator.indent(30);
 
@@ -100,7 +99,7 @@ public class Interface {
 
         Decorator.border(serviceMenuString);
         Decorator.print(selectMenuItem);
-        int num = sc.nextInt();
+        int num = ScanClass.sc();
         while (num != 0) {
             switch (num) {
                 case 1 -> service.addCoffee();
@@ -110,7 +109,7 @@ public class Interface {
             }
             Decorator.border(serviceMenuString);
             Decorator.print(selectMenuItem);
-            num = sc.nextInt();
+            num = ScanClass.sc();
         }
         Decorator.indent(30);
     }
