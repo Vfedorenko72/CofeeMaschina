@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 public class Interface {
 
-    Scanner sc = new Scanner(System.in);
     Service service = new Service(500, 1000, 500);
     Making making = new Making();
-
+    Scanner sc = new Scanner(System.in);
     static String whitespace = " ";
 
     public void turnOn(int num) {
@@ -115,6 +114,5 @@ public class Interface {
         }
         Decorator.indent(30);
     }
-
 
 }

@@ -155,6 +155,7 @@ public class Service {
         } else if (milk - decreaseMilk < 0) {
             return -3;
         }
+
         coffee -= decreaseCoffee;
         water -= decreaseWater;
         milk -= decreaseMilk;
@@ -164,7 +165,7 @@ public class Service {
 
     public int needsClearing(int qty) {
 
-        if (clearing + qty > 20) {
+        if (clearing + qty > 10) {
            return -1;
         } else {
             clearing += qty;
@@ -174,7 +175,9 @@ public class Service {
 
     public void clearing() {
         clearing = 0;
-        Making.addCoffeeLog("Очистило кофемашину");
+        String clearingStr = "Кофемашина очищена";
+        Decorator.print(clearingStr);
+        Making.addCoffeeLog("Очистка кофемашины");
     }
 
 

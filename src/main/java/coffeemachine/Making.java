@@ -25,21 +25,29 @@ public class Making {
     String clearingStr = """
                 Необходимо очистить емкость с отходами кофе.
                 Главное меню -> Обслуживание -> Очистка""";
+    String maxServings = "Максимальное колисество порций - 10";
 
     // Приготовить эспрессо
     public void espresso(int qty, Service service) {
         int quantityCoffee = qty * 10;
         int quantityWater = qty * 40;
         int quantityMilk = 0;
-
-        // Проверка, что не закончились ингредиенты
-        int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
         int clearing = service.needsClearing(qty);
+
+
+        // Не больше 10 кружек за раз
+        if (qty > 10) {
+            Decorator.print(maxServings);
+            return;
+
+        }
+        // проверка на прибраться
         if (clearing == -1) {
             Decorator.print(clearingStr);
             return;
         }
-
+        // Проверка, что не закончились ингредиенты
+        int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
         switch (ingredientsCode) {
             case -1 -> {
                 Decorator.print(notEnoughCoffee);
@@ -62,14 +70,19 @@ public class Making {
         int quantityCoffee = qty * 10;
         int quantityWater = qty * 40;
         int quantityMilk = qty * 100;
-
-        // Проверка, что не закончились ингредиенты
-        int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
         int clearing = service.needsClearing(qty);
+        // Не больше 10 кружек за раз
+        if (qty > 10) {
+            Decorator.print(maxServings);
+            return;
+        }
+        // Проверка нужно ли прибраться
         if (clearing == -1) {
             Decorator.print(clearingStr);
             return;
         }
+        // Проверка, что не закончились ингредиенты
+        int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
         switch (ingredientsCode) {
             case -1 -> {
                 Decorator.print(notEnoughCoffee);
@@ -94,10 +107,12 @@ public class Making {
 
     }
     public static void addCoffeeLog(String coffeeLogStr) {
+
         coffeeLog.add(coffeeLogStr);
     }
 
     public String getLog(){
+
         return String.join("\n",coffeeLog);
     }
 
