@@ -8,7 +8,7 @@ import java.util.Map;
 public class Making {
     public static List<String> coffeeLog = new ArrayList<>();
     int[] profile = new int[3];
-    Map<String, > profiles = new HashMap<>();
+    Map<String, int[]> profiles = new HashMap<String, int[]>();
 
 
     Map<String, Double> hashMap = new HashMap<>();
