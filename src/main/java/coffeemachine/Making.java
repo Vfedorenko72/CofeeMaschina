@@ -7,8 +7,7 @@ import java.util.Map;
 
 public class Making {
     public static List<String> coffeeLog = new ArrayList<>();
-    int[] profile = new int[3];
-    Map<String, int[]> profiles = new HashMap<String, int[]>();
+    private Map<String, CoffeeProfile> coffeeProfiles = new HashMap<>();
 
 
     Map<String, Double> hashMap = new HashMap<>();
@@ -72,6 +71,49 @@ public class Making {
         addCoffeeLog("Приготовлено " + qty + " Эспрессо");
 
     }
+
+    public void coffeeOfProfile( int coffee, int water, int milk, Service service) {
+        String qtyCupsStr = "Выберите количество чашек: ";
+        Decorator.print(qtyCupsStr);
+        int qty = ScanClass.sc();
+        int quantityCoffee = qty * coffee;
+        int quantityWater = qty * water;
+        int quantityMilk = qty * milk;
+        int clearing = service.needsClearing(qty);
+        // Не больше 10 кружек за раз
+        if (qty > 10) {
+            Decorator.print(maxServings);
+            return;
+        }
+        // Проверка нужно ли прибраться
+        if (clearing == -1) {
+            Decorator.print(clearingStr);
+            return;
+        }
+        // Проверка, что не закончились ингредиенты
+        int ingredientsCode = service.decreaseIngredients(quantityCoffee, quantityWater, quantityMilk);
+        switch (ingredientsCode) {
+            case -1 -> {
+                Decorator.print(notEnoughCoffee);
+                return;
+            }
+            case -2 -> {
+                Decorator.print(notEnoughWater);
+                return;
+            }
+            case -3 -> {
+                Decorator.print(notEnoughMilk);
+                return;
+            }
+
+        }
+
+
+        Decorator.print(take);
+        System.out.println();
+        Decorator.print(service.remains());
+        addCoffeeLog("Приготовлено " + qty + " Капучино");
+    }
     // Приготовить капучино
     public void cappuccino (int qty, Service service) {
         int quantityCoffee = qty * 10;
@@ -114,14 +156,28 @@ public class Making {
 
     }
 
-    public void createProfile() {
+
+   /* public void createProfile() {
         String profileStr = "Введите название профиля: ";
         String coffeeStr = "Введите количество кофе: ";
         String waterStr = "Введите количество кофе: ";
         String milkStr = "Введите количество кофе: ";
-
+        Decorator.print(profileStr);
         int profile = ScanClass.sc();
-    }
+        Decorator.print(coffeeStr);
+        int coffee = ScanClass.sc();
+        Decorator.print(waterStr);
+        int water = ScanClass.sc();
+        Decorator.print(milkStr);
+        int milk = ScanClass.sc();
+
+        CoffeeProfile profile = new CoffeeProfile(name, coffeeAmount, waterAmount, milkAmount);
+        coffeeProfiles.put(name, profile);
+        System.out.println("Профиль добавлен: " + profile);
+
+
+
+    }*/
 
     public static void addCoffeeLog(String coffeeLogStr) {
 

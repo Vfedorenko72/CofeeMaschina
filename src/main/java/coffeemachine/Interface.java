@@ -1,13 +1,17 @@
 package coffeemachine;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class Interface {
 
+
     Service service = new Service();
     Making making = new Making();
+    CoffeeProfileManager profileManager = new CoffeeProfileManager();
+
     String whitespace = " ";
     String selectMenuItem = "Выберите пункт меню: ";
+
     public void turnOn(int num) {
         Decorator.indent(30);
         String ternOn = whitespace.repeat(10) + "Кофемашина включена";
@@ -56,6 +60,7 @@ public class Interface {
 
     public void makingCoffeeMenu(Service service) {
         Decorator.indent(30);
+
         String makingCoffeeMenu = """
                     ПРИГОТОВЛЕНИЕ
                 1. Эспрессо
@@ -71,17 +76,34 @@ public class Interface {
         int num = ScanClass.sc();
 
         while (num != 0) {
-            if (num == 3) {
-                threeCoffees();
-                return;
+            if (num == 1 || num==2) {
+                Decorator.print(qtyCupsStr);
+                int qtyCups = ScanClass.sc();
+                Decorator.indent(30);
+                switch (num) {
+                    case 1 -> making.espresso(qtyCups, service);
+                    case 2 -> making.cappuccino(qtyCups, service);
+                }
             }
-            Decorator.print(qtyCupsStr);
-            int qtyCups = ScanClass.sc();
-            Decorator.indent(30);
-            switch (num) {
-                case 1 -> making.espresso(qtyCups, service);
-                case 2 -> making.cappuccino(qtyCups, service);
+            switch (num){
+                case 3 -> {threeCoffees();
+                   /* return;*/}
+                case 5 -> {
+                    profileManager.createProfile();
+                }
+                case 4 -> {
+                    List<Integer> profile = profileManager.getProfile();
+                    int coffee = profile.get(0);
+                    int water = profile.get(1);
+                    int milk =  profile.get(2);
+                    making.coffeeOfProfile(coffee, water,
+                            milk, service);
+                }
+
+
+
             }
+
             Decorator.border(makingCoffeeMenu);
             Decorator.print(selectMenuItem);
             num = ScanClass.sc();
@@ -125,12 +147,18 @@ public class Interface {
         Decorator.indent(30);
         Decorator.border(coffeeSetStr);
         Decorator.print(selectMenuItem);
-        Decorator.indent(30);
         int num = ScanClass.sc();
+        Decorator.indent(30);
+
         switch (num) {
             case 1 -> making.espresso(3, service);
             case 2 -> making.cappuccino(3, service);
         }
+    }
+
+    public void profile() {
+
+
     }
 
 }
