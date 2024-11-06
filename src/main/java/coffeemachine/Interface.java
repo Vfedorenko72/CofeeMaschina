@@ -86,17 +86,18 @@ public class Interface {
                 }
             }
             switch (num){
-                case 3 -> {threeCoffees();
-                   /* return;*/}
+                case 3 -> threeCoffees();
+
                 case 5 -> {
                     profileManager.createProfile();
                 }
                 case 4 -> {
-                    List<Integer> profile = profileManager.getProfile();
-                    int coffee = profile.get(0);
-                    int water = profile.get(1);
-                    int milk =  profile.get(2);
-                    making.coffeeOfProfile(coffee, water,
+                    CoffeeProfile profile = profileManager.getProfile();
+                    int coffee = profile.getCoffeeAmount();
+                    int water = profile.getWaterAmount();
+                    int milk =  profile.getMilkAmount();
+                    String name = profile.getName();
+                    making.coffeeOfProfile(name, coffee, water,
                             milk, service);
                 }
 
@@ -115,12 +116,13 @@ public class Interface {
     public void serviceMenu() {
         Decorator.indent(30);
         Decorator.print(service.remains());
-        String serviceMenuString = " ОБСЛУЖИВАНИЕ " +
-                "\n1. Добавить кофе " +
-                "\n2. Добавить воды " +
-                "\n3. Добавить молока " +
-                "\n4. Очистить кофемашину " +
-                "\n0. Главное меню";
+        String serviceMenuString = """
+                ОБСЛУЖИВАНИЕ
+                1. Добавить кофе
+                2. Добавить воды
+                3. Добавить молока
+                4. Очистить кофемашину
+                0. Главное меню""";
         Decorator.print(selectMenuItem);
 
         Decorator.border(serviceMenuString);
@@ -156,9 +158,5 @@ public class Interface {
         }
     }
 
-    public void profile() {
-
-
-    }
 
 }

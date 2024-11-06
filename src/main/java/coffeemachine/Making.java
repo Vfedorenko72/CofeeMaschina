@@ -71,8 +71,8 @@ public class Making {
         addCoffeeLog("Приготовлено " + qty + " Эспрессо");
 
     }
-
-    public void coffeeOfProfile( int coffee, int water, int milk, Service service) {
+    // приготовление по профилю
+    public void coffeeOfProfile( String name, int coffee, int water, int milk, Service service) {
         String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.print(qtyCupsStr);
         int qty = ScanClass.sc();
@@ -112,7 +112,7 @@ public class Making {
         Decorator.print(take);
         System.out.println();
         Decorator.print(service.remains());
-        addCoffeeLog("Приготовлено " + qty + " Капучино");
+        addCoffeeLog("Приготовлено " + qty + " кофе из профиля " + name);
     }
     // Приготовить капучино
     public void cappuccino (int qty, Service service) {
@@ -155,29 +155,6 @@ public class Making {
         addCoffeeLog("Приготовлено " + qty + " Капучино");
 
     }
-
-
-   /* public void createProfile() {
-        String profileStr = "Введите название профиля: ";
-        String coffeeStr = "Введите количество кофе: ";
-        String waterStr = "Введите количество кофе: ";
-        String milkStr = "Введите количество кофе: ";
-        Decorator.print(profileStr);
-        int profile = ScanClass.sc();
-        Decorator.print(coffeeStr);
-        int coffee = ScanClass.sc();
-        Decorator.print(waterStr);
-        int water = ScanClass.sc();
-        Decorator.print(milkStr);
-        int milk = ScanClass.sc();
-
-        CoffeeProfile profile = new CoffeeProfile(name, coffeeAmount, waterAmount, milkAmount);
-        coffeeProfiles.put(name, profile);
-        System.out.println("Профиль добавлен: " + profile);
-
-
-
-    }*/
 
     public static void addCoffeeLog(String coffeeLogStr) {
 

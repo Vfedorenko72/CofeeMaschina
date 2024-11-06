@@ -8,7 +8,7 @@ public class CoffeeMachine {
     private int clearing;
     static final int volumeCoffee = 500;
     static final int volumeWater = 1000;
-    static final int volumeMilk = 500;
+    static final int volumeMilk = 100;
 
     public CoffeeMachine(int coffee, int water, int milk) {
         this.coffee = coffee;

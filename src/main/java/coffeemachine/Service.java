@@ -41,13 +41,15 @@ public class Service {
                     Decorator.print(coffeeInBox + coffee + " грамм кофе.");
                     System.out.println();
                     Decorator.print(remains());
-                    Making.addCoffeeLog("Добавил" + addCoffee + "кофе");
+                    Making.addCoffeeLog("Добавил " + addCoffee + " грамм кофе");
+
                     ready = true;
                 }
             } else {
                 ready = true;
             }
         }
+
     }
 
     // Добавить воды
@@ -75,7 +77,7 @@ public class Service {
                     Decorator.print(waterInBox + water + " миллилитров воды.");
                     System.out.println();
                     Decorator.print(remains());
-                    Making.addCoffeeLog("Добавил" + addWater + "воды");
+                    Making.addCoffeeLog("Добавил " + addWater + " миллилитров воды");
                     ready = true;
                 }
             } else {
@@ -109,7 +111,7 @@ public class Service {
                     Decorator.print(milkInBox + milk + " миллилитров молока.");
                     System.out.println();
                     Decorator.print(remains());
-                    Making.addCoffeeLog("Добавил" + addMilk + "молока");
+                    Making.addCoffeeLog("Добавил " + addMilk + " миллилитров молока");
                     ready = true;
                 }
             } else {

@@ -1,7 +1,6 @@
 package coffeemachine;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -29,10 +28,11 @@ class CoffeeProfileManager {
         CoffeeProfile profile = new CoffeeProfile(name, coffeeAmount, waterAmount, milkAmount);
         profiles.put(name, profile);
         System.out.println("Профиль создан успешно!");
+        Making.addCoffeeLog("Создан профиль " + name);
     }
 
     // Метод для вывода профиля по названию
-    public List<Integer> getProfile() {
+    public CoffeeProfile getProfile() {
         String nameProfileStr = "Введите имя профиля: \n";
 
         for (String key : profiles.keySet()) {
@@ -40,12 +40,8 @@ class CoffeeProfileManager {
         }
         Decorator.print(nameProfileStr);
         String nameProfile = ScanClass.scStr();
-        int coffee = profiles.get(nameProfile).getCoffeeAmount();
-        int water = profiles.get(nameProfile).getWaterAmount();
-        int milk = profiles.get(nameProfile).getMilkAmount();
 
-
-        return List.of(coffee, water, milk);
+        return  profiles.get(nameProfile);
 
 
     }
