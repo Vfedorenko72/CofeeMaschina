@@ -6,8 +6,9 @@ public class ScanClass {
 
 
     public static int sc() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+
+            Scanner sc = new Scanner(System.in);
+            return sc.nextInt();
     }
     public static String scStr() {
         Scanner scStr = new Scanner(System.in);

@@ -35,6 +35,7 @@ public class Interface {
                 0. Выключить кофемашину""";
         Decorator.border(mainMenu);
         Decorator.print(selectMenuItem);
+        while ()
         int num = ScanClass.sc();
         while (num != 0) {
             switch (num) {

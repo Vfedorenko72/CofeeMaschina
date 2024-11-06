@@ -13,24 +13,24 @@ public class Making {
     Map<String, Double> hashMap = new HashMap<>();
 
     String notEnoughCoffee = """
-                Не достаточно кофе.
-                Для добавления кофе перейдите:
-                Главное меню -> Обслуживание -> Добавить кофе
-                """;
+            Не достаточно кофе.
+            Для добавления кофе перейдите:
+            Главное меню -> Обслуживание -> Добавить кофе
+            """;
     String notEnoughWater = """
-                Не достаточно воды.
-                Для добавления воды перейдите:
-                Главное меню -> Обслуживание -> Добавить воды
-                """;
+            Не достаточно воды.
+            Для добавления воды перейдите:
+            Главное меню -> Обслуживание -> Добавить воды
+            """;
     String notEnoughMilk = """
-                Не достаточно молока.
-                Для добавления молока перейдите:
-                Главное меню -> Обслуживание -> Добавить молока
-                """;
+            Не достаточно молока.
+            Для добавления молока перейдите:
+            Главное меню -> Обслуживание -> Добавить молока
+            """;
     String take = "Заберите пожалуйста ваш кофе";
     String clearingStr = """
-                Необходимо очистить емкость с отходами кофе.
-                Главное меню -> Обслуживание -> Очистка""";
+            Необходимо очистить емкость с отходами кофе.
+            Главное меню -> Обслуживание -> Очистка""";
     String maxServings = "Максимальное колисество порций - 10";
 
     // Приготовить эспрессо
@@ -71,8 +71,9 @@ public class Making {
         addCoffeeLog("Приготовлено " + qty + " Эспрессо");
 
     }
+
     // приготовление по профилю
-    public void coffeeOfProfile( String name, int coffee, int water, int milk, Service service) {
+    public void coffeeOfProfile(String name, int coffee, int water, int milk, Service service) {
         String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.print(qtyCupsStr);
         int qty = ScanClass.sc();
@@ -114,8 +115,9 @@ public class Making {
         Decorator.print(service.remains());
         addCoffeeLog("Приготовлено " + qty + " кофе из профиля " + name);
     }
+
     // Приготовить капучино
-    public void cappuccino (int qty, Service service) {
+    public void cappuccino(int qty, Service service) {
         int quantityCoffee = qty * 10;
         int quantityWater = qty * 40;
         int quantityMilk = qty * 100;
@@ -161,11 +163,10 @@ public class Making {
         coffeeLog.add(coffeeLogStr);
     }
 
-    public String getLog(){
+    public String getLog() {
 
-        return String.join("\n",coffeeLog);
+        return String.join("\n", coffeeLog);
     }
-
 
 
 }

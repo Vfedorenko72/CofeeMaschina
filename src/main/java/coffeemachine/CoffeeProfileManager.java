@@ -31,7 +31,7 @@ class CoffeeProfileManager {
         Making.addCoffeeLog("Создан профиль " + name);
     }
 
-    // Метод для вывода профиля по названию
+    // отдаю профиль
     public CoffeeProfile getProfile() {
         String nameProfileStr = "Введите имя профиля: \n";
 
