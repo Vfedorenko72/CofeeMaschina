@@ -101,19 +101,6 @@ public class Interface {
 
             Decorator.border(mainMenu);
             Decorator.print(selectMenuItem);
-            //num = ScanClass.sc();
-
-            /*if (num == -1) {
-                Decorator.print("Введенное значение должно быть числом :");
-                Decorator.border(mainMenu);
-                Decorator.print(selectMenuItem);
-            } else if (num < 0 || num > 4) {
-                String warning = "Выбранное значение должно быть от 0 до 4";
-                Decorator.indent(30);
-                Decorator.print(warning);
-                Decorator.border(mainMenu);
-                Decorator.print(selectMenuItem);
-            }*/
 
 
         }
@@ -144,16 +131,22 @@ public class Interface {
                 Decorator.indent(30);
                 return;
             }else if (num < 0 || num > 5) {
-                String warning = "Выбранное значение должно быть от 0 до 5";
+                String warning = "Выбранное значение должно быть числом от 0 до 5";
+                Decorator.indent(30);
                 Decorator.print(warning);
             } else {
                 if (num == 1 || num == 2) {
                     Decorator.print(qtyCupsStr);
                     int qtyCups = ScanClass.sc();
-                    Decorator.indent(30);
-                    switch (num) {
-                        case 1 -> making.espresso(qtyCups, service);
-                        case 2 -> making.cappuccino(qtyCups, service);
+                    if (qtyCups == -1) {
+                        Decorator.indent(30);
+                        Decorator.print("Введите число, максимальное количество порций - 10");
+                    } else {
+                        Decorator.indent(30);
+                        switch (num) {
+                            case 1 -> making.espresso(qtyCups, service);
+                            case 2 -> making.cappuccino(qtyCups, service);
+                        }
                     }
                 }
                 switch (num) {
@@ -163,13 +156,19 @@ public class Interface {
                         profileManager.createProfile();
                     }
                     case 4 -> {
-                        CoffeeProfile profile = profileManager.getProfile();
-                        int coffee = profile.getCoffeeAmount();
-                        int water = profile.getWaterAmount();
-                        int milk = profile.getMilkAmount();
-                        String name = profile.getName();
-                        making.coffeeOfProfile(name, coffee, water,
-                                milk, service);
+                        int size = profileManager.profilesSize();
+                        if (size == 0) {
+                            Decorator.print("Список профилей пуст.");
+                        } else {
+                            CoffeeProfile profile = profileManager.getProfile();
+                            int coffee = profile.getCoffeeAmount();
+                            int water = profile.getWaterAmount();
+                            int milk = profile.getMilkAmount();
+                            String name = profile.getName();
+
+                            making.coffeeOfProfile(size, name, coffee, water,
+                                    milk, service);
+                        }
                     }
                 }
             }

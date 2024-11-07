@@ -45,5 +45,7 @@ class CoffeeProfileManager {
 
 
     }
-
+    public int profilesSize() {
+        return profiles.size();
+    }
 }

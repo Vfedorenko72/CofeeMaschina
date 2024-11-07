@@ -31,7 +31,7 @@ public class Making {
     String clearingStr = """
             Необходимо очистить емкость с отходами кофе.
             Главное меню -> Обслуживание -> Очистка""";
-    String maxServings = "Максимальное колисество порций - 10";
+    String maxServings = "Максимальное количество порций - 10";
 
     // Приготовить эспрессо
     public void espresso(int qty, Service service) {
@@ -76,7 +76,7 @@ public class Making {
     }
 
     // приготовление по профилю
-    public void coffeeOfProfile(String name, int coffee, int water, int milk, Service service) {
+    public void coffeeOfProfile(int size, String name, int coffee, int water, int milk, Service service) {
         String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.print(qtyCupsStr);
         int qty = ScanClass.sc();
