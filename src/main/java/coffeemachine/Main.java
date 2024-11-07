@@ -7,12 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Interface inter = new Interface();
         Decorator.indent(30);
-        System.out.print(whitespace.repeat(5) + "Кнопка включателя кофемашины (1/0): ");
-        inter.turnOn(ScanClass.sc());
-        inter.mainMenu();
-        inter.turnOff(0);
-
-
+        inter.start();
     }
 
 }

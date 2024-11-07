@@ -12,14 +12,37 @@ public class Interface {
     String whitespace = " ";
     String selectMenuItem = "Выберите пункт меню: ";
 
-    public void turnOn(int num) {
+    public void start() {
+
+        int num = -1;
+        while (num != 1 && num != 0) {
+            System.out.print(whitespace.repeat(5) + "Кнопка включателя кофемашины (1/0): ");
+
+            num = ScanClass.sc();
+            if (num == 1) {
+                turnOn();
+                mainMenu();
+                turnOff();
+            } else if (num == 0) {
+                turnOff();
+            }else {
+                Decorator.print("Вводимое значение должно быть только 0 или 1");
+                System.out.println();
+            }
+
+        }
+    }
+
+
+
+    public void turnOn() {
         Decorator.indent(30);
         String ternOn = whitespace.repeat(10) + "Кофемашина включена";
         Decorator.border(ternOn);
 
     }
 
-    public void turnOff(int num) {
+    public void turnOff() {
         Decorator.indent(30);
         String ternOff = whitespace.repeat(10) + "Кофемашина выключена";
         Decorator.border(ternOff);
@@ -33,23 +56,36 @@ public class Interface {
                 3. Логирование
                 4. Посмотреть остатки
                 0. Выключить кофемашину""";
+
+
+
         Decorator.border(mainMenu);
         Decorator.print(selectMenuItem);
-        int num = ScanClass.sc();
-        while (num != 0) {
-            switch (num) {
-                case 1 -> makingCoffeeMenu(service);
-                case 2 -> serviceMenu();
-                case 3 -> {
-                    Decorator.indent(30);
-                    System.out.println(" ".repeat(5) + "ЛОГИ");
-                    Decorator.print(making.getLog());
-                }
-                case 4 -> {
-                    Decorator.indent(30);
-                    Decorator.print(service.remains());
-                }
 
+
+
+        int num = 1;
+
+        while (num != 0) {
+            num = ScanClass.sc();
+            if (num < 0 || num > 4) {
+                String warning = "Выбранное значение должно быть от 0 до 4";
+                Decorator.print(warning);
+            } else {
+                switch (num) {
+                    case 1 -> makingCoffeeMenu(service);
+                    case 2 -> serviceMenu();
+                    case 3 -> {
+                        Decorator.indent(30);
+                        System.out.println(" ".repeat(5) + "ЛОГИ");
+                        Decorator.print(making.getLog());
+                    }
+                    case 4 -> {
+                        Decorator.indent(30);
+                        Decorator.print(service.remains());
+                    }
+
+                }
             }
             Decorator.border(mainMenu);
             Decorator.print(selectMenuItem);
