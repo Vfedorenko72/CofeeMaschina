@@ -68,7 +68,10 @@ public class Making {
         Decorator.print(take);
         System.out.println();
         Decorator.print(service.remains());
-        addCoffeeLog("Приготовлено " + qty + " Эспрессо");
+
+        CoffeeType coffeeType = CoffeeType.ESPRESSO;
+
+        addCoffeeLog("Приготовлено " + qty + coffeeType.getName());
 
     }
 
@@ -113,7 +116,9 @@ public class Making {
         Decorator.print(take);
         System.out.println();
         Decorator.print(service.remains());
-        addCoffeeLog("Приготовлено " + qty + " кофе из профиля " + name);
+
+        CoffeeType coffeeType = CoffeeType.PROFILE;
+        addCoffeeLog("Приготовлено " + qty + " кофе из " + coffeeType.getName() + " " + name);
     }
 
     // Приготовить капучино
@@ -154,9 +159,31 @@ public class Making {
         Decorator.print(take);
         System.out.println();
         Decorator.print(service.remains());
-        addCoffeeLog("Приготовлено " + qty + " Капучино");
+
+        CoffeeType coffeeType = CoffeeType.RAPPUCCINO;
+
+        addCoffeeLog("Приготовлено " + qty + coffeeType.getName());
 
     }
+
+    public enum CoffeeType {
+        ESPRESSO(" Эспрессо"),
+        RAPPUCCINO(" Капучино"),
+        PROFILE(" профиль");
+
+
+        private final String name;
+
+
+        CoffeeType(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
 
     public static void addCoffeeLog(String coffeeLogStr) {
 

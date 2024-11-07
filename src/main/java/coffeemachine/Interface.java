@@ -35,13 +35,13 @@ public class Interface {
                 0. Выключить кофемашину""";
         Decorator.border(mainMenu);
         Decorator.print(selectMenuItem);
-        while ()
         int num = ScanClass.sc();
         while (num != 0) {
             switch (num) {
                 case 1 -> makingCoffeeMenu(service);
                 case 2 -> serviceMenu();
                 case 3 -> {
+                    Decorator.indent(30);
                     System.out.println(" ".repeat(5) + "ЛОГИ");
                     Decorator.print(making.getLog());
                 }
