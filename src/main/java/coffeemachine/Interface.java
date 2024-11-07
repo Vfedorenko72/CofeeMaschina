@@ -14,18 +14,22 @@ public class Interface {
 
     public void start() {
 
-        int num = -1;
+        int num = -2;
         while (num != 1 && num != 0) {
             System.out.print(whitespace.repeat(5) + "Кнопка включателя кофемашины (1/0): ");
 
             num = ScanClass.sc();
+
             if (num == 1) {
                 turnOn();
                 mainMenu();
                 turnOff();
             } else if (num == 0) {
                 turnOff();
-            }else {
+            } else if (num == -1) {
+                Decorator.print("Введенное значение должно быть числом");
+                System.out.println();
+            } else {
                 Decorator.print("Вводимое значение должно быть только 0 или 1");
                 System.out.println();
             }
@@ -66,10 +70,19 @@ public class Interface {
 
         while (num != 0) {
             num = ScanClass.sc();
-            if (num < 0 || num > 4) {
+
+            if (num == 0) {
+                return;
+            }else if (num == -1) {
+                Decorator.indent(30);
+                Decorator.print("Введенное значение должно быть числом");
+                System.out.println();
+            } else if (num < 0 || num > 4) {
                 String warning = "Выбранное значение должно быть от 0 до 4";
+                Decorator.indent(30);
                 Decorator.print(warning);
-            } else {
+
+            } else{
                 switch (num) {
                     case 1 -> makingCoffeeMenu(service);
                     case 2 -> serviceMenu();
@@ -85,10 +98,26 @@ public class Interface {
 
                 }
             }
+
             Decorator.border(mainMenu);
             Decorator.print(selectMenuItem);
-            num = ScanClass.sc();
+            //num = ScanClass.sc();
+
+            /*if (num == -1) {
+                Decorator.print("Введенное значение должно быть числом :");
+                Decorator.border(mainMenu);
+                Decorator.print(selectMenuItem);
+            } else if (num < 0 || num > 4) {
+                String warning = "Выбранное значение должно быть от 0 до 4";
+                Decorator.indent(30);
+                Decorator.print(warning);
+                Decorator.border(mainMenu);
+                Decorator.print(selectMenuItem);
+            }*/
+
+
         }
+        Decorator.indent(30);
 
 
     }
@@ -111,7 +140,10 @@ public class Interface {
         int num = 1;
         while (num != 0) {
             num = ScanClass.sc();
-            if (num < 0 || num > 5) {
+            if (num == 0) {
+                Decorator.indent(30);
+                return;
+            }else if (num < 0 || num > 5) {
                 String warning = "Выбранное значение должно быть от 0 до 5";
                 Decorator.print(warning);
             } else {
@@ -143,7 +175,7 @@ public class Interface {
             }
             Decorator.border(makingCoffeeMenu);
             Decorator.print(selectMenuItem);
-            num = ScanClass.sc();
+            //num = ScanClass.sc();
         }
         Decorator.indent(30);
 
@@ -168,9 +200,14 @@ public class Interface {
 
         while (num != 0) {
             num = ScanClass.sc();
-            if (num < 0 || num > 4) {
-                String warning = "Выбранное значение должно быть от 0 до 4";
+
+            if (num == 0) {
+                return;
+            }else if (num < 0 || num > 4) {
+                Decorator.indent(30);
+                String warning = "Выбранное значение должно быть цифрой от 0 до 4";
                 Decorator.print(warning);
+
             } else {
                 switch (num) {
                     case 1 -> service.addCoffee();
@@ -179,9 +216,10 @@ public class Interface {
                     case 4 -> service.clearing();
                 }
             }
+
             Decorator.border(serviceMenuString);
             Decorator.print(selectMenuItem);
-            num = ScanClass.sc();
+            //num = ScanClass.sc();
         }
         Decorator.indent(30);
     }

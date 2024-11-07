@@ -29,7 +29,24 @@ public class Service {
             int addCoffee = ScanClass.sc();
             Decorator.indent(30);
             if (addCoffee !=0) {
-                if (addCoffee < minAddCoffee) {
+                if (addCoffee == -1) {
+                    String warning = "Выбранное значение должно быть цифрой от 0 до 4";
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    Decorator.print(warning);
+                    System.out.println();
+                } else if (addCoffee < minAddCoffee) {
                     Decorator.print(strMinAddCoffee);
                     System.out.println();
                 } else if (addCoffee > cenAddCoffee) {
