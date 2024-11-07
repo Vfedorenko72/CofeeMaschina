@@ -62,8 +62,6 @@ public class Interface {
         Decorator.border(mainMenu);
         Decorator.print(selectMenuItem);
 
-
-
         int num = 1;
 
         while (num != 0) {
@@ -110,38 +108,39 @@ public class Interface {
         String qtyCupsStr = "Выберите количество чашек: ";
         Decorator.border(makingCoffeeMenu);
         Decorator.print(selectMenuItem);
-        int num = ScanClass.sc();
-
+        int num = 1;
         while (num != 0) {
-            if (num == 1 || num==2) {
-                Decorator.print(qtyCupsStr);
-                int qtyCups = ScanClass.sc();
-                Decorator.indent(30);
+            num = ScanClass.sc();
+            if (num < 0 || num > 5) {
+                String warning = "Выбранное значение должно быть от 0 до 5";
+                Decorator.print(warning);
+            } else {
+                if (num == 1 || num == 2) {
+                    Decorator.print(qtyCupsStr);
+                    int qtyCups = ScanClass.sc();
+                    Decorator.indent(30);
+                    switch (num) {
+                        case 1 -> making.espresso(qtyCups, service);
+                        case 2 -> making.cappuccino(qtyCups, service);
+                    }
+                }
                 switch (num) {
-                    case 1 -> making.espresso(qtyCups, service);
-                    case 2 -> making.cappuccino(qtyCups, service);
+                    case 3 -> threeCoffees();
+
+                    case 5 -> {
+                        profileManager.createProfile();
+                    }
+                    case 4 -> {
+                        CoffeeProfile profile = profileManager.getProfile();
+                        int coffee = profile.getCoffeeAmount();
+                        int water = profile.getWaterAmount();
+                        int milk = profile.getMilkAmount();
+                        String name = profile.getName();
+                        making.coffeeOfProfile(name, coffee, water,
+                                milk, service);
+                    }
                 }
             }
-            switch (num){
-                case 3 -> threeCoffees();
-
-                case 5 -> {
-                    profileManager.createProfile();
-                }
-                case 4 -> {
-                    CoffeeProfile profile = profileManager.getProfile();
-                    int coffee = profile.getCoffeeAmount();
-                    int water = profile.getWaterAmount();
-                    int milk =  profile.getMilkAmount();
-                    String name = profile.getName();
-                    making.coffeeOfProfile(name, coffee, water,
-                            milk, service);
-                }
-
-
-
-            }
-
             Decorator.border(makingCoffeeMenu);
             Decorator.print(selectMenuItem);
             num = ScanClass.sc();
@@ -164,13 +163,21 @@ public class Interface {
 
         Decorator.border(serviceMenuString);
         Decorator.print(selectMenuItem);
-        int num = ScanClass.sc();
+
+        int num = 1;
+
         while (num != 0) {
-            switch (num) {
-                case 1 -> service.addCoffee();
-                case 2 -> service.addWater();
-                case 3 -> service.addMilk();
-                case 4 -> service.clearing();
+            num = ScanClass.sc();
+            if (num < 0 || num > 4) {
+                String warning = "Выбранное значение должно быть от 0 до 4";
+                Decorator.print(warning);
+            } else {
+                switch (num) {
+                    case 1 -> service.addCoffee();
+                    case 2 -> service.addWater();
+                    case 3 -> service.addMilk();
+                    case 4 -> service.clearing();
+                }
             }
             Decorator.border(serviceMenuString);
             Decorator.print(selectMenuItem);
@@ -184,15 +191,24 @@ public class Interface {
                 1. Эспрессо
                 2. Капучино""";
         Decorator.indent(30);
-        Decorator.border(coffeeSetStr);
-        Decorator.print(selectMenuItem);
-        int num = ScanClass.sc();
-        Decorator.indent(30);
+        int num = -1;
+        while (num != 1 && num != 0) {
 
-        switch (num) {
-            case 1 -> making.espresso(3, service);
-            case 2 -> making.cappuccino(3, service);
+            Decorator.border(coffeeSetStr);
+            Decorator.print(selectMenuItem);
+
+            num = ScanClass.sc();
+            Decorator.indent(30);
+            switch (num) {
+                case 1 -> making.espresso(3, service);
+                case 2 -> making.cappuccino(3, service);
+                default -> {
+                    Decorator.print("Выбранное значение должно быть только  1 или 2");
+                    System.out.println();
+                }
+            }
         }
+
     }
 
 
