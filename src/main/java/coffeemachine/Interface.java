@@ -1,6 +1,5 @@
 package coffeemachine;
 
-import java.util.List;
 
 public class Interface {
 
@@ -15,8 +14,9 @@ public class Interface {
     public void start() {
 
         int num = -2;
-        while (num != 1 && num != 0) {
-            System.out.print(whitespace.repeat(5) + "Кнопка включателя кофемашины (1/0): ");
+        while (num != 2147483647) {
+            System.out.print(whitespace.repeat(34) + "Кнопка включателя кофемашины (1/0)\n" +
+                    "либо если выдернуть вилку из розетки - введите верхнюю границу int:) ");
 
             num = ScanClass.sc();
 
@@ -24,13 +24,16 @@ public class Interface {
                 turnOn();
                 mainMenu();
                 turnOff();
-            } else if (num == 0) {
+                } else if (num == 0) {
                 turnOff();
             } else if (num == -1) {
                 Decorator.print("Введенное значение должно быть числом");
                 System.out.println();
-            } else {
-                Decorator.print("Вводимое значение должно быть только 0 или 1");
+            } else if (num == 2147483647) {
+                System.exit(0);
+            }
+            else {
+                Decorator.print("Вводимое значение должно быть только 0, 1 или то неприлично длинное число:)");
                 System.out.println();
             }
 
