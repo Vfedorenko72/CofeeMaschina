@@ -170,20 +170,21 @@ public class Interface {
                         if (milkAmount == 0) {
                             return;
                         }
-
+                        Decorator.indent(30);
 
                         profileManager.createProfile(name, coffeeAmount, waterAmount, milkAmount);
                     }
                     case 4 -> {
                         int size = profileManager.profilesSize();
+                        String nameProfile = profileManager.contains();
                         if (size == 0) {
                             Decorator.indent(30);
                             Decorator.print("Список профилей пуст.");
-                        } else if (profileManager.containsKey().equals("Нет профиля")) {
+                        } else if (nameProfile.equals("Нет профиля")) {
                             Decorator.print("Профиля с таким именем нет");
                         }
                         else {
-                            CoffeeProfile profile = profileManager.getProfile(profileManager.containsKey());
+                            CoffeeProfile profile = profileManager.getProfile(nameProfile);
                             int coffee = profile.getCoffeeAmount();
                             int water = profile.getWaterAmount();
                             int milk = profile.getMilkAmount();
@@ -278,6 +279,7 @@ public class Interface {
             num = ScanClass.sc();
 
             if (num == 0) {
+                Decorator.indent(30);
                 return;
             }else if (num < 0 || num > 4) {
                 Decorator.indent(30);

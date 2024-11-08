@@ -43,6 +43,7 @@ public class Service {
 
                 } else {
                     coffee += addCoffee;
+                    Decorator.indent(30);
                     Decorator.print(coffeeInBox + coffee + " грамм кофе.");
                     System.out.println();
                     Decorator.print(remains());
@@ -177,6 +178,7 @@ public class Service {
 
     public void clearing() {
         clearing = 0;
+        Decorator.indent(30);
         String clearingStr = "Кофемашина очищена";
         Decorator.print(clearingStr);
         Making.addCoffeeLog("Очистка кофемашины");

@@ -27,7 +27,7 @@ public class Making {
             Для добавления молока перейдите:
             Главное меню -> Обслуживание -> Добавить молока
             """;
-    String take = "Заберите пожалуйста ваш кофе";
+    String take = "Заберите пожалуйста ваш кофе: ";
     String clearingStr = """
             Необходимо очистить емкость с отходами кофе.
             Главное меню -> Обслуживание -> Очистка""";
@@ -65,7 +65,7 @@ public class Making {
             }
         }
 
-        Decorator.print(take);
+        Decorator.print(take + qty + " Эспрессо");
         System.out.println();
         Decorator.print(service.remains());
 
@@ -112,8 +112,8 @@ public class Making {
 
         }
 
-
-        Decorator.print(take);
+        Decorator.indent(30);
+        Decorator.print(take + qty + " " + name);
         System.out.println();
         Decorator.print(service.remains());
 
@@ -156,7 +156,7 @@ public class Making {
         }
 
 
-        Decorator.print(take);
+        Decorator.print(take + qty + " Капучино");
         System.out.println();
         Decorator.print(service.remains());
 

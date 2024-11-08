@@ -13,7 +13,7 @@ class CoffeeProfileManager {
         this.scanner = new Scanner(System.in);
     }
 
-    public String containsKey() {
+    public String contains() {
         for (String key : profiles.keySet()) {
             System.out.println(profiles.get(key));
         }
