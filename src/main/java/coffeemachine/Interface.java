@@ -46,6 +46,7 @@ public class Interface {
         Decorator.indent(30);
         String ternOn = whitespace.repeat(10) + "Кофемашина включена";
         Decorator.border(ternOn);
+        Making.addCoffeeLog("Кофемашина включена");
 
     }
 
@@ -53,6 +54,7 @@ public class Interface {
         Decorator.indent(30);
         String ternOff = whitespace.repeat(10) + "Кофемашина выключена";
         Decorator.border(ternOff);
+        Making.addCoffeeLog("Кофемашина выключена");
     }
 
 
@@ -158,6 +160,10 @@ public class Interface {
                     case 5 -> {
                         System.out.print("Введите название профиля: ");
                         String name = ScanClass.scStr();
+                        if (name.equals("ошибка")) {
+                            Decorator.print("Длинна названия профиля не должна привышать 15 символов.");
+                            break;
+                        }
                         int coffeeAmount = coffeeAmount();
                         if (coffeeAmount == 0) {
                             return;

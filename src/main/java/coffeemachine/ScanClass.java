@@ -19,6 +19,13 @@ public class ScanClass {
 
     public static String scStr() {
         Scanner scStr = new Scanner(System.in);
-        return scStr.nextLine();
+        int maxLength = 15; // Максимальная длина строки
+        String name = scStr.nextLine();
+        if (name.length() > maxLength) {
+            return "ошибка";
+
+        } else {
+            return name;
+        }
     }
 }
