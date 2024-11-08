@@ -27,21 +27,9 @@ public class Service {
         while (!ready) {
             Decorator.print(msgAddCoffee);
             int addCoffee = ScanClass.sc();
-            Decorator.indent(30);
             if (addCoffee !=0) {
                 if (addCoffee == -1) {
-                    String warning = "Выбранное значение должно быть цифрой от 0 до 4";
-
-
-
-
-
-
-
-
-
-
-
+                    String warning = "Выбранное значение должно быть цифрой";
 
 
                     Decorator.print(warning);
@@ -63,6 +51,7 @@ public class Service {
                     ready = true;
                 }
             } else {
+                Decorator.indent(30);
                 ready = true;
             }
         }
@@ -81,9 +70,14 @@ public class Service {
         while (!ready) {
             Decorator.print(msgAddWater);
             int addWater = ScanClass.sc();
-            Decorator.indent(30);
             if (addWater != 0) {
-                if (addWater < minAddWater) {
+                if (addWater == -1) {
+                    String warning = "Выбранное значение должно быть цифрой";
+
+
+                    Decorator.print(warning);
+                    System.out.println();
+                } else if (addWater < minAddWater) {
                     Decorator.print(strMinAddWater);
                     System.out.println();
                 } else if (addWater > cenAddWater) {
@@ -98,6 +92,7 @@ public class Service {
                     ready = true;
                 }
             } else {
+                Decorator.indent(30);
                 ready = true;
             }
         }
@@ -115,8 +110,14 @@ public class Service {
         while (!ready) {
             Decorator.print(msgAddMilk);
             int addMilk = ScanClass.sc();
-            Decorator.indent(30);
             if (addMilk != 0) {
+                if (addMilk == -1) {
+                    String warning = "Выбранное значение должно быть цифрой";
+
+
+                    Decorator.print(warning);
+                    System.out.println();
+                }
                 if (addMilk < minAddMilk) {
                     Decorator.print(strMinAddMilk);
                     System.out.println();
@@ -132,6 +133,7 @@ public class Service {
                     ready = true;
                 }
             } else {
+                Decorator.indent(30);
                 ready = true;
             }
         }

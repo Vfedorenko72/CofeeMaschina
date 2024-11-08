@@ -153,14 +153,34 @@ public class Interface {
                     case 3 -> threeCoffees();
 
                     case 5 -> {
-                        profileManager.createProfile();
+                        System.out.print("Введите название профиля: ");
+                        String name = ScanClass.scStr();
+                        int coffeeAmount = coffeeAmount();
+                        if (coffeeAmount == 0) {
+                            return;
+                        }
+                        int waterAmount = waterAmount();
+                        if (waterAmount == 0) {
+                            return;
+                        }
+                        int milkAmount = milkAmount();
+                        if (milkAmount == 0) {
+                            return;
+                        }
+
+
+                        profileManager.createProfile(name, coffeeAmount, waterAmount, milkAmount);
                     }
                     case 4 -> {
                         int size = profileManager.profilesSize();
                         if (size == 0) {
+                            Decorator.indent(30);
                             Decorator.print("Список профилей пуст.");
-                        } else {
-                            CoffeeProfile profile = profileManager.getProfile();
+                        } else if (profileManager.containsKey().equals("Нет профиля")) {
+                            Decorator.print("Профиля с таким именем нет");
+                        }
+                        else {
+                            CoffeeProfile profile = profileManager.getProfile(profileManager.containsKey());
                             int coffee = profile.getCoffeeAmount();
                             int water = profile.getWaterAmount();
                             int milk = profile.getMilkAmount();
@@ -177,6 +197,60 @@ public class Interface {
             //num = ScanClass.sc();
         }
         Decorator.indent(30);
+
+    }
+    public int coffeeAmount() {
+        String qtyCoffee = "Введите количество порций кофе (1 - 10) или 0 для выхода: ";
+        Decorator.print(qtyCoffee);
+        while (true) {
+
+            int qty = ScanClass.sc();
+            if (qty < 0 || qty > 10) {
+                Decorator.print(qtyCoffee);
+
+            } else if (qty == 0) {
+                return 0;
+            } else {
+               return  qty * 10;
+            }
+        }
+    }
+
+    public int waterAmount() {
+        String qtyWater = "Введите количество воды (40 - 100) или 0 для выхода: ";
+        Decorator.print(qtyWater);
+        while (true) {
+
+            int qty = ScanClass.sc();
+            if ((qty < 40 || qty > 100) && qty != 0) {
+
+                Decorator.print(qtyWater);
+
+            } else if (qty == 0) {
+                return 0;
+            } else {
+                return qty;
+            }
+        }
+
+    }
+
+    public int milkAmount() {
+        String qtyMilk = "Введите количество молока (50 - 200) или 0 для выхода: ";
+        Decorator.print(qtyMilk);
+        while (true) {
+
+            int qty = ScanClass.sc();
+            if ((qty < 50 || qty > 250) && qty != 0) {
+
+                Decorator.print(qtyMilk);
+
+            } else if (qty == 0) {
+                return 0;
+            } else {
+                return qty;
+            }
+        }
 
     }
 
@@ -231,16 +305,22 @@ public class Interface {
         int num = -1;
         while (num != 1 && num != 0) {
 
+
             Decorator.border(coffeeSetStr);
-            Decorator.print(selectMenuItem);
+
+            Decorator.print("Выберите пункт меню или 0 для выхода: ");
 
             num = ScanClass.sc();
             Decorator.indent(30);
             switch (num) {
                 case 1 -> making.espresso(3, service);
                 case 2 -> making.cappuccino(3, service);
+                case 0 -> {
+                    return;
+                }
+
                 default -> {
-                    Decorator.print("Выбранное значение должно быть только  1 или 2");
+                    Decorator.print("Выбранное значение должно быть только 0,  1 или 2");
                     System.out.println();
                 }
             }

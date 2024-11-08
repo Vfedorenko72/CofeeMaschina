@@ -13,16 +13,31 @@ class CoffeeProfileManager {
         this.scanner = new Scanner(System.in);
     }
 
+    public String containsKey() {
+        for (String key : profiles.keySet()) {
+            System.out.println(profiles.get(key));
+        }
+        String nameProfileStr = "Введите имя профиля: \n";
+        Decorator.print(nameProfileStr);
+        String nameProfile = ScanClass.scStr();
+        if (profiles.containsKey(nameProfile)) {
+            return nameProfile;
+        } else {
+            return "Нет профиля";
+        }
+    }
+
     // Метод для создания нового профиля
-    public void createProfile() {
-        System.out.print("Введите название профиля: ");
+    public void createProfile(String name, int coffeeAmount, int waterAmount, int milkAmount) {
+       /* System.out.print("Введите название профиля: ");
         String name = ScanClass.scStr();
-        System.out.print("Введите количество кофе: ");
+        System.out.print("Введите количество порций кофе: ");
         int coffeeAmount = ScanClass.sc();
+
         System.out.print("Введите количество воды: ");
         int waterAmount = ScanClass.sc();
         System.out.print("Введите количество молока: ");
-        int milkAmount = ScanClass.sc();
+        int milkAmount = ScanClass.sc();*/
 
 
         CoffeeProfile profile = new CoffeeProfile(name, coffeeAmount, waterAmount, milkAmount);
@@ -32,14 +47,9 @@ class CoffeeProfileManager {
     }
 
     // отдаю профиль
-    public CoffeeProfile getProfile() {
-        String nameProfileStr = "Введите имя профиля: \n";
+    public CoffeeProfile getProfile(String nameProfile) {
 
-        for (String key : profiles.keySet()) {
-            System.out.println(profiles.get(key));
-        }
-        Decorator.print(nameProfileStr);
-        String nameProfile = ScanClass.scStr();
+
 
         return  profiles.get(nameProfile);
 
